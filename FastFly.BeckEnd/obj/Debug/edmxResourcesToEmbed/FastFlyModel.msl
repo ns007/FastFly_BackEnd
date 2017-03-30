@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FastFlyModelStoreContainer" CdmEntityContainer="FastFlyModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="PercentageJob" ColumnName="PercentageJob" />
+          <ScalarProperty Name="CellNum" ColumnName="CellNum" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="ApplicationRoleId" ColumnName="ApplicationRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.Department)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.Faculty)">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.ApplicationRole)">
+        <MappingFragment StoreEntitySet="ApplicationRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarRents">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.CarRent)">
+        <MappingFragment StoreEntitySet="CarRents">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="TotalDays" ColumnName="TotalDays" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.Country)">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestReplacements">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.TestReplacement)">
+        <MappingFragment StoreEntitySet="TestReplacements">
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="TestDate" ColumnName="TestDate" />
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="SubstituteLucterer" ColumnName="SubstituteLucterer" />
+          <ScalarProperty Name="ExamPeriod" ColumnName="ExamPeriod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StayExpenses">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.StayExpense)">
+        <MappingFragment StoreEntitySet="StayExpenses">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="TotalDays" ColumnName="TotalDays" />
+          <ScalarProperty Name="FeePerDay" ColumnName="FeePerDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReckoningDocuments">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.ReckoningDocument)">
+        <MappingFragment StoreEntitySet="ReckoningDocuments">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ConcentrationExpenses" ColumnName="ConcentrationExpenses" />
+          <ScalarProperty Name="AccommodationAbroad" ColumnName="AccommodationAbroad" />
+          <ScalarProperty Name="StayExpense" ColumnName="StayExpense" />
+          <ScalarProperty Name="CarRent" ColumnName="CarRent" />
+          <ScalarProperty Name="OtherOxpense" ColumnName="OtherOxpense" />
+          <ScalarProperty Name="AdvanceGiven" ColumnName="AdvanceGiven" />
+          <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+          <ScalarProperty Name="SignPresididnt" ColumnName="SignPresididnt" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Sign" ColumnName="Sign" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherOxpenses">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.OtherOxpense)">
+        <MappingFragment StoreEntitySet="OtherOxpenses">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="ExpenseEssence" ColumnName="ExpenseEssence" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LectureReplacements">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.LectureReplacement)">
+        <MappingFragment StoreEntitySet="LectureReplacements">
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="FromHour" ColumnName="FromHour" />
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="ToHour" ColumnName="ToHour" />
+          <ScalarProperty Name="CompleteBy" ColumnName="CompleteBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Flights">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.Flight)">
+        <MappingFragment StoreEntitySet="Flights">
+          <ScalarProperty Name="FlightDate" ColumnName="FlightDate" />
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="CountryCodeDest" ColumnName="CountryCodeDest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccommodationAbroads">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.AccommodationAbroad)">
+        <MappingFragment StoreEntitySet="AccommodationAbroads">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="TotalNights" ColumnName="TotalNights" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplyDocuments">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.ApplyDocument)">
+        <MappingFragment StoreEntitySet="ApplyDocuments">
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ColleagueType" ColumnName="ColleagueType" />
+          <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="TotalDays" ColumnName="TotalDays" />
+          <ScalarProperty Name="TravelPurpose" ColumnName="TravelPurpose" />
+          <ScalarProperty Name="TotalRequsetAmount" ColumnName="TotalRequsetAmount" />
+          <ScalarProperty Name="TotalEselDays" ColumnName="TotalEselDays" />
+          <ScalarProperty Name="LastReturnDate" ColumnName="LastReturnDate" />
+          <ScalarProperty Name="TeacheDuringTravel" ColumnName="TeacheDuringTravel" />
+          <ScalarProperty Name="ReplacingInTests" ColumnName="ReplacingInTests" />
+          <ScalarProperty Name="ResearchTraining" ColumnName="ResearchTraining" />
+          <ScalarProperty Name="AboveWeek" ColumnName="AboveWeek" />
+          <ScalarProperty Name="MoreThenOneTravel" ColumnName="MoreThenOneTravel" />
+          <ScalarProperty Name="AbsenceTestA" ColumnName="AbsenceTestA" />
+          <ScalarProperty Name="ExceptionRequstExplain" ColumnName="ExceptionRequstExplain" />
+          <ScalarProperty Name="PlusOne" ColumnName="PlusOne" />
+          <ScalarProperty Name="ApplicantSign" ColumnName="ApplicantSign" />
+          <ScalarProperty Name="ApplyDate" ColumnName="ApplyDate" />
+          <ScalarProperty Name="DepartmentHeadApprove" ColumnName="DepartmentHeadApprove" />
+          <ScalarProperty Name="ReadPaperApprove" ColumnName="ReadPaperApprove" />
+          <ScalarProperty Name="ReplacementApprove" ColumnName="ReplacementApprove" />
+          <ScalarProperty Name="DepartmentHeadFullname" ColumnName="DepartmentHeadFullname" />
+          <ScalarProperty Name="DepartmentHeadSign" ColumnName="DepartmentHeadSign" />
+          <ScalarProperty Name="DepartmentHeadSignDate" ColumnName="DepartmentHeadSignDate" />
+          <ScalarProperty Name="WastedYear" ColumnName="WastedYear" />
+          <ScalarProperty Name="WastedAmount" ColumnName="WastedAmount" />
+          <ScalarProperty Name="Sign1" ColumnName="Sign1" />
+          <ScalarProperty Name="Date1" ColumnName="Date1" />
+          <ScalarProperty Name="Sign2" ColumnName="Sign2" />
+          <ScalarProperty Name="Date2" ColumnName="Date2" />
+          <ScalarProperty Name="Sign3" ColumnName="Sign3" />
+          <ScalarProperty Name="Date3" ColumnName="Date3" />
+          <ScalarProperty Name="Sign4" ColumnName="Sign4" />
+          <ScalarProperty Name="Date4" ColumnName="Date4" />
+          <ScalarProperty Name="Sign5" ColumnName="Sign5" />
+          <ScalarProperty Name="Date5" ColumnName="Date5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DestinationPeriods">
+      <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.DestinationPeriods)">
+        <MappingFragment StoreEntitySet="DestinationPeriods">
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="Flight" ColumnName="Flight" />
+          <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+          <ScalarProperty Name="RideBy" ColumnName="RideBy" />
+          <ScalarProperty Name="ParticipationFee" ColumnName="ParticipationFee" />
+          <ScalarProperty Name="TotalAmountRequested" ColumnName="TotalAmountRequested" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

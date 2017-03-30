@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FastFlyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FastFlyModelStoreContainer">
+    <EntitySet Name="Users" EntityType="FastFlyModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="FastFlyModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Faculties" EntityType="FastFlyModel.Store.Faculties" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApplicationRoles" EntityType="FastFlyModel.Store.ApplicationRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CarRents" EntityType="FastFlyModel.Store.CarRents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Countries" EntityType="FastFlyModel.Store.Countries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestReplacements" EntityType="FastFlyModel.Store.TestReplacements" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StayExpenses" EntityType="FastFlyModel.Store.StayExpenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReckoningDocuments" EntityType="FastFlyModel.Store.ReckoningDocuments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OtherOxpenses" EntityType="FastFlyModel.Store.OtherOxpenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LectureReplacements" EntityType="FastFlyModel.Store.LectureReplacements" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Flights" EntityType="FastFlyModel.Store.Flights" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccommodationAbroads" EntityType="FastFlyModel.Store.AccommodationAbroads" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApplyDocuments" EntityType="FastFlyModel.Store.ApplyDocuments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DestinationPeriods" EntityType="FastFlyModel.Store.DestinationPeriods" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="DepartmentUser" Association="FastFlyModel.Store.DepartmentUser">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FacultyUser" Association="FastFlyModel.Store.FacultyUser">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ApplicationRoleUser" Association="FastFlyModel.Store.ApplicationRoleUser">
+      <End Role="ApplicationRole" EntitySet="ApplicationRoles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="CountryFlight" Association="FastFlyModel.Store.CountryFlight">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Flight" EntitySet="Flights" />
+    </AssociationSet>
+    <AssociationSet Name="UserApplyDocument" Association="FastFlyModel.Store.UserApplyDocument">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ApplyDocument" EntitySet="ApplyDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="CountryDestinationPeriods" Association="FastFlyModel.Store.CountryDestinationPeriods">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="DestinationPeriods" EntitySet="DestinationPeriods" />
+    </AssociationSet>
+    <AssociationSet Name="UserReckoningDocument" Association="FastFlyModel.Store.UserReckoningDocument">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ReckoningDocument" EntitySet="ReckoningDocuments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="9" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="PercentageJob" Type="int" Nullable="true" />
+    <Property Name="CellNum" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="FacultyId" Type="int" Nullable="false" />
+    <Property Name="ApplicationRoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacultyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ApplicationRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CarRents">
+    <Key>
+      <PropertyRef Name="DocId" />
+      <PropertyRef Name="FromDate" />
+      <PropertyRef Name="ToDate" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="FromDate" Type="datetime" Nullable="false" />
+    <Property Name="ToDate" Type="datetime" Nullable="false" />
+    <Property Name="TotalDays" Type="int" Nullable="true" />
+    <Property Name="Cost" Type="decimal" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="CountryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TestReplacements">
+    <Key>
+      <PropertyRef Name="CourseName" />
+      <PropertyRef Name="TestDate" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TestDate" Type="datetime" Nullable="false" />
+    <Property Name="SubstituteLucterer" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ExamPeriod" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="StayExpenses">
+    <Key>
+      <PropertyRef Name="DocId" />
+      <PropertyRef Name="FromDate" />
+      <PropertyRef Name="ToDate" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="FromDate" Type="datetime" Nullable="false" />
+    <Property Name="ToDate" Type="datetime" Nullable="false" />
+    <Property Name="TotalDays" Type="int" Nullable="false" />
+    <Property Name="FeePerDay" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReckoningDocuments">
+    <Key>
+      <PropertyRef Name="DocId" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="9" />
+    <Property Name="ConcentrationExpenses" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="AccommodationAbroad" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="StayExpense" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="CarRent" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="OtherOxpense" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="AdvanceGiven" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="AdvanceAmount" Type="decimal" Nullable="false" />
+    <Property Name="SignPresididnt" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Sign" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OtherOxpenses">
+    <Key>
+      <PropertyRef Name="DocId" />
+      <PropertyRef Name="ExpenseEssence" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="ExpenseEssence" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Cost" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LectureReplacements">
+    <Key>
+      <PropertyRef Name="CourseName" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="FromHour" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="FromHour" Type="time" Nullable="false" />
+    <Property Name="ToHour" Type="time" Nullable="false" />
+    <Property Name="CompleteBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Flights">
+    <Key>
+      <PropertyRef Name="FlightDate" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="FlightDate" Type="datetime" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Cost" Type="decimal" Nullable="false" />
+    <Property Name="CountryCodeDest" Type="nvarchar" Nullable="false" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="AccommodationAbroads">
+    <Key>
+      <PropertyRef Name="DocId" />
+      <PropertyRef Name="FromDate" />
+      <PropertyRef Name="ToDate" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="FromDate" Type="datetime" Nullable="false" />
+    <Property Name="ToDate" Type="datetime" Nullable="false" />
+    <Property Name="TotalNights" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplyDocuments">
+    <Key>
+      <PropertyRef Name="DocId" />
+    </Key>
+    <Property Name="DocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="9" />
+    <Property Name="ColleagueType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DepartureDate" Type="datetime" Nullable="false" />
+    <Property Name="ReturnDate" Type="datetime" Nullable="false" />
+    <Property Name="TotalDays" Type="int" Nullable="false" />
+    <Property Name="TravelPurpose" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TotalRequsetAmount" Type="int" Nullable="false" />
+    <Property Name="TotalEselDays" Type="int" Nullable="false" />
+    <Property Name="LastReturnDate" Type="datetime" Nullable="false" />
+    <Property Name="TeacheDuringTravel" Type="bit" Nullable="false" />
+    <Property Name="ReplacingInTests" Type="bit" Nullable="false" />
+    <Property Name="ResearchTraining" Type="bit" Nullable="false" />
+    <Property Name="AboveWeek" Type="bit" Nullable="false" />
+    <Property Name="MoreThenOneTravel" Type="bit" Nullable="false" />
+    <Property Name="AbsenceTestA" Type="bit" Nullable="false" />
+    <Property Name="ExceptionRequstExplain" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="PlusOne" Type="bit" Nullable="false" />
+    <Property Name="ApplicantSign" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ApplyDate" Type="datetime" Nullable="false" />
+    <Property Name="DepartmentHeadApprove" Type="datetime" Nullable="false" />
+    <Property Name="ReadPaperApprove" Type="datetime" Nullable="false" />
+    <Property Name="ReplacementApprove" Type="bit" Nullable="false" />
+    <Property Name="DepartmentHeadFullname" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DepartmentHeadSign" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DepartmentHeadSignDate" Type="datetime" Nullable="false" />
+    <Property Name="WastedYear" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="WastedAmount" Type="decimal" Nullable="false" />
+    <Property Name="Sign1" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date1" Type="datetime" Nullable="false" />
+    <Property Name="Sign2" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date2" Type="datetime" Nullable="false" />
+    <Property Name="Sign3" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date3" Type="datetime" Nullable="false" />
+    <Property Name="Sign4" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date4" Type="datetime" Nullable="false" />
+    <Property Name="Sign5" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Date5" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DestinationPeriods">
+    <Key>
+      <PropertyRef Name="FromDate" />
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="DocId" Type="int" Nullable="false" />
+    <Property Name="CountryCode" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="FromDate" Type="datetime" Nullable="false" />
+    <Property Name="ToDate" Type="datetime" Nullable="false" />
+    <Property Name="Flight" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Hotel" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="RideBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ParticipationFee" Type="decimal" Nullable="false" />
+    <Property Name="TotalAmountRequested" Type="decimal" Nullable="false" />
+  </EntityType>
+  <Association Name="DepartmentUser">
+    <End Role="Department" Type="FastFlyModel.Store.Departments" Multiplicity="1" />
+    <End Role="User" Type="FastFlyModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FacultyUser">
+    <End Role="Faculty" Type="FastFlyModel.Store.Faculties" Multiplicity="1" />
+    <End Role="User" Type="FastFlyModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApplicationRoleUser">
+    <End Role="ApplicationRole" Type="FastFlyModel.Store.ApplicationRoles" Multiplicity="1" />
+    <End Role="User" Type="FastFlyModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ApplicationRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountryFlight">
+    <End Role="Country" Type="FastFlyModel.Store.Countries" Multiplicity="1" />
+    <End Role="Flight" Type="FastFlyModel.Store.Flights" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="CountryCodeDest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserApplyDocument">
+    <End Role="User" Type="FastFlyModel.Store.Users" Multiplicity="1" />
+    <End Role="ApplyDocument" Type="FastFlyModel.Store.ApplyDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplyDocument">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountryDestinationPeriods">
+    <End Role="Country" Type="FastFlyModel.Store.Countries" Multiplicity="1" />
+    <End Role="DestinationPeriods" Type="FastFlyModel.Store.DestinationPeriods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="DestinationPeriods">
+        <PropertyRef Name="CountryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserReckoningDocument">
+    <End Role="User" Type="FastFlyModel.Store.Users" Multiplicity="1" />
+    <End Role="ReckoningDocument" Type="FastFlyModel.Store.ReckoningDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReckoningDocument">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

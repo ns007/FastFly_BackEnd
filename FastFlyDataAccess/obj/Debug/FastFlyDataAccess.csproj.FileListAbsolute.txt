@@ -1,0 +1,10 @@
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\FastFlyDataAccess.dll.config
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\FastFlyDataAccess.dll
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\FastFlyDataAccess.pdb
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\EntityFramework.dll
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\EntityFramework.xml
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\obj\Debug\FastFlyDataAccess.csprojResolveAssemblyReference.cache
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\obj\Debug\FastFlyDataAccess.dll
+C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFlyDataAccess\obj\Debug\FastFlyDataAccess.pdb

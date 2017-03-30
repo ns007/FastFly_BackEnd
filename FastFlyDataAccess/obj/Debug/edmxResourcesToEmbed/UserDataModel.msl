@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FlyFastModelStoreContainer" CdmEntityContainer="FlyFastEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FlyFastModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="PercentageJob" ColumnName="PercentageJob" />
+          <ScalarProperty Name="CellNum" ColumnName="CellNum" />
+          <ScalarProperty Name="ApplicationRole" ColumnName="ApplicationRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
