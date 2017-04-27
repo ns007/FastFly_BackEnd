@@ -272,7 +272,6 @@
     <Compile Include="Controllers\StayExpensesController.cs" />
     <Compile Include="Controllers\TestReplacementsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>FastFlyModel.tt</DependentUpon>
     </Compile>
@@ -312,7 +311,6 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="OtherOxpense.cs">
       <DependentUpon>FastFlyModel.tt</DependentUpon>
     </Compile>

@@ -9,85 +9,141 @@ using System.Data.SqlClient;
 using FastFly.BeckEnd.Models;
 using System.Security.Cryptography;
 using System.Data.Entity;
+using System.Web.Http.Description;
+using System.Data.Entity.Infrastructure;
 
 namespace FastFly.BeckEnd.Controllers
 {
     public class UsersController : ApiController
     {
-        string cs = ConfigurationManager.ConnectionStrings["FlyFastConnection"].ConnectionString;
-        SqlConnection conn = new SqlConnection();
 
-        public IEnumerable<User> Get()
+
+        private FastFlyModelContainer db = new FastFlyModelContainer();
+
+        // GET: api/Users
+        public IQueryable<User> GetUsers()
         {
-            using (var context = new FastFlyModelContainer())
-            {
-                try
-                {
-                    context.Configuration.ProxyCreationEnabled = false;
-                    IEnumerable<User> allusers =  context.Users.Include("Department1").Include("Faculty1").
-                                                  Include("ApplicationRole1").Include("ApplyDocuments").
-                                                  Include("ReckoningDocuments").ToList();
-                    return allusers;
-                }
-                catch (Exception ex)
-                {
-                    //return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-                }
-
-            }
-            return null;
+            return db.Users;
         }
 
-        public IHttpActionResult Get(string Id, string Password)
+        // GET: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(string id)
         {
-            using (var context = new FastFlyModelContainer())
+            User user = db.Users.Find(id);
+            if (user == null)
             {
-                try
-                {
-                    context.Configuration.ProxyCreationEnabled = false;
-                    IEnumerable<User> allusers = context.Users.Include("Department1").Include("Faculty1").
-                                                  Include("ApplicationRole1").Include("ApplyDocuments").
-                                                  Include("ReckoningDocuments").ToList();
-                    User user = allusers.Where(u => u.Id == Id && u.Password == Password).FirstOrDefault();
-                    if (user != null)
-                        return Ok(user);
-                    else
-                        return NotFound();
-                }
-                catch (Exception ex)
-                {
-                    //return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-                }
-
+                return NotFound();
             }
-            return null;
+
+            return Ok(user);
         }
 
-        // POST api/users - add user to db 
-        public HttpResponseMessage Post(User user)
+        public IHttpActionResult Get(string id, string Password)
         {
-            using (var context = new FastFlyModelContainer())
+            User user = db.Users.Find(id);
+            if (user == null || !user.Password.Equals(Password))
             {
-                try
-                {
-                    if (ModelState.IsValid)
-                    {
-                        context.Users.Add(user);
-                        context.SaveChanges();
-                        return Request.CreateResponse(HttpStatusCode.OK);
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.InternalServerError, "Invalid Model");
-                    }
-                }
-                catch(Exception ex)
-                {
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
-                }
-                
+                return NotFound();
             }
-           
+
+            return Ok(user);
         }
+
+        // PUT: api/Users/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUser(string id, User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Users.Add(user);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (UserExists(user.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        }
+
+        // DELETE: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(string id)
+        {
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+            return Ok(user);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool UserExists(string id)
+        {
+            return db.Users.Count(e => e.Id == id) > 0;
+        }
+
     }
 }
