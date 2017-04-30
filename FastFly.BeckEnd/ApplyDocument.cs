@@ -17,41 +17,41 @@ namespace FastFly.BeckEnd
         public int DocId { get; set; }
         public string UserId { get; set; }
         public string ColleagueType { get; set; }
-        public System.DateTime DepartureDate { get; set; }
-        public System.DateTime ReturnDate { get; set; }
-        public int TotalDays { get; set; }
+        public Nullable<System.DateTime> DepartureDate { get; set; }
+        public Nullable<System.DateTime> ReturnDate { get; set; }
+        public Nullable<int> TotalDays { get; set; }
         public string TravelPurpose { get; set; }
-        public int TotalRequsetAmount { get; set; }
-        public int TotalEselDays { get; set; }
-        public System.DateTime LastReturnDate { get; set; }
-        public bool TeacheDuringTravel { get; set; }
-        public bool ReplacingInTests { get; set; }
-        public bool ResearchTraining { get; set; }
-        public bool AboveWeek { get; set; }
-        public bool MoreThenOneTravel { get; set; }
-        public bool AbsenceTestA { get; set; }
+        public Nullable<int> TotalRequsetAmount { get; set; }
+        public Nullable<int> TotalEselDays { get; set; }
+        public Nullable<System.DateTime> LastReturnDate { get; set; }
+        public Nullable<bool> TeacheDuringTravel { get; set; }
+        public Nullable<bool> ReplacingInTests { get; set; }
+        public Nullable<bool> ResearchTraining { get; set; }
+        public Nullable<bool> AboveWeek { get; set; }
+        public Nullable<bool> MoreThenOneTravel { get; set; }
+        public Nullable<bool> AbsenceTestA { get; set; }
         public string ExceptionRequstExplain { get; set; }
-        public bool PlusOne { get; set; }
+        public Nullable<bool> PlusOne { get; set; }
         public string ApplicantSign { get; set; }
-        public System.DateTime ApplyDate { get; set; }
-        public System.DateTime DepartmentHeadApprove { get; set; }
-        public System.DateTime ReadPaperApprove { get; set; }
-        public bool ReplacementApprove { get; set; }
+        public Nullable<System.DateTime> ApplyDate { get; set; }
+        public Nullable<System.DateTime> DepartmentHeadApprove { get; set; }
+        public Nullable<System.DateTime> ReadPaperApprove { get; set; }
+        public Nullable<bool> ReplacementApprove { get; set; }
         public string DepartmentHeadFullname { get; set; }
         public string DepartmentHeadSign { get; set; }
-        public System.DateTime DepartmentHeadSignDate { get; set; }
+        public Nullable<System.DateTime> DepartmentHeadSignDate { get; set; }
         public string WastedYear { get; set; }
-        public decimal WastedAmount { get; set; }
+        public Nullable<decimal> WastedAmount { get; set; }
         public string Sign1 { get; set; }
-        public System.DateTime Date1 { get; set; }
+        public Nullable<System.DateTime> Date1 { get; set; }
         public string Sign2 { get; set; }
-        public System.DateTime Date2 { get; set; }
+        public Nullable<System.DateTime> Date2 { get; set; }
         public string Sign3 { get; set; }
-        public System.DateTime Date3 { get; set; }
+        public Nullable<System.DateTime> Date3 { get; set; }
         public string Sign4 { get; set; }
-        public System.DateTime Date4 { get; set; }
+        public Nullable<System.DateTime> Date4 { get; set; }
         public string Sign5 { get; set; }
-        public System.DateTime Date5 { get; set; }
+        public Nullable<System.DateTime> Date5 { get; set; }
     
         public virtual User User { get; set; }
     }

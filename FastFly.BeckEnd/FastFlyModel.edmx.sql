@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/12/2017 20:44:01
--- Generated from EDMX file: C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFly.BeckEnd\FastFlyModel.edmx
+-- Date Created: 04/30/2017 20:11:09
+-- Generated from EDMX file: C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\FastFlyModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [FlyFast];
+USE [FlyFastDB];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -34,6 +34,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserApplyDocument]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CountryDestinationPeriods]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DestinationPeriods] DROP CONSTRAINT [FK_CountryDestinationPeriods];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReckoningDocument]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReckoningDocuments] DROP CONSTRAINT [FK_UserReckoningDocument];
 GO
 
 -- --------------------------------------------------
@@ -168,16 +171,16 @@ GO
 CREATE TABLE [dbo].[ReckoningDocuments] (
     [DocId] int  NOT NULL,
     [UserId] nvarchar(9)  NOT NULL,
-    [ConcentrationExpenses] nvarchar(1)  NOT NULL,
-    [AccommodationAbroad] nvarchar(1)  NOT NULL,
-    [StayExpense] nvarchar(1)  NOT NULL,
-    [CarRent] nvarchar(1)  NOT NULL,
-    [OtherOxpense] nvarchar(1)  NOT NULL,
-    [AdvanceGiven] nvarchar(1)  NOT NULL,
-    [AdvanceAmount] decimal(18,0)  NOT NULL,
-    [SignPresididnt] nvarchar(50)  NOT NULL,
-    [Date] datetime  NOT NULL,
-    [Sign] nvarchar(50)  NOT NULL
+    [ConcentrationExpenses] nvarchar(1)  NULL,
+    [AccommodationAbroad] nvarchar(1)  NULL,
+    [StayExpense] nvarchar(1)  NULL,
+    [CarRent] nvarchar(1)  NULL,
+    [OtherOxpense] nvarchar(1)  NULL,
+    [AdvanceGiven] nvarchar(1)  NULL,
+    [AdvanceAmount] decimal(18,0)  NULL,
+    [SignPresididnt] nvarchar(50)  NULL,
+    [Date] datetime  NULL,
+    [Sign] nvarchar(50)  NULL
 );
 GO
 
@@ -224,42 +227,42 @@ GO
 CREATE TABLE [dbo].[ApplyDocuments] (
     [DocId] int IDENTITY(1,1) NOT NULL,
     [UserId] nvarchar(9)  NOT NULL,
-    [ColleagueType] nvarchar(50)  NOT NULL,
-    [DepartureDate] datetime  NOT NULL,
-    [ReturnDate] datetime  NOT NULL,
-    [TotalDays] int  NOT NULL,
-    [TravelPurpose] nvarchar(50)  NOT NULL,
-    [TotalRequsetAmount] int  NOT NULL,
-    [TotalEselDays] int  NOT NULL,
-    [LastReturnDate] datetime  NOT NULL,
-    [TeacheDuringTravel] bit  NOT NULL,
-    [ReplacingInTests] bit  NOT NULL,
-    [ResearchTraining] bit  NOT NULL,
-    [AboveWeek] bit  NOT NULL,
-    [MoreThenOneTravel] bit  NOT NULL,
-    [AbsenceTestA] bit  NOT NULL,
-    [ExceptionRequstExplain] nvarchar(250)  NOT NULL,
-    [PlusOne] bit  NOT NULL,
-    [ApplicantSign] nvarchar(50)  NOT NULL,
-    [ApplyDate] datetime  NOT NULL,
-    [DepartmentHeadApprove] datetime  NOT NULL,
-    [ReadPaperApprove] datetime  NOT NULL,
-    [ReplacementApprove] bit  NOT NULL,
-    [DepartmentHeadFullname] nvarchar(100)  NOT NULL,
-    [DepartmentHeadSign] nvarchar(50)  NOT NULL,
-    [DepartmentHeadSignDate] datetime  NOT NULL,
-    [WastedYear] nvarchar(5)  NOT NULL,
-    [WastedAmount] decimal(18,0)  NOT NULL,
-    [Sign1] nvarchar(50)  NOT NULL,
-    [Date1] datetime  NOT NULL,
-    [Sign2] nvarchar(50)  NOT NULL,
-    [Date2] datetime  NOT NULL,
-    [Sign3] nvarchar(50)  NOT NULL,
-    [Date3] datetime  NOT NULL,
-    [Sign4] nvarchar(50)  NOT NULL,
-    [Date4] datetime  NOT NULL,
-    [Sign5] nvarchar(50)  NOT NULL,
-    [Date5] datetime  NOT NULL
+    [ColleagueType] nvarchar(50)  NULL,
+    [DepartureDate] datetime  NULL,
+    [ReturnDate] datetime  NULL,
+    [TotalDays] int  NULL,
+    [TravelPurpose] nvarchar(50)  NULL,
+    [TotalRequsetAmount] int  NULL,
+    [TotalEselDays] int  NULL,
+    [LastReturnDate] datetime  NULL,
+    [TeacheDuringTravel] bit  NULL,
+    [ReplacingInTests] bit  NULL,
+    [ResearchTraining] bit  NULL,
+    [AboveWeek] bit  NULL,
+    [MoreThenOneTravel] bit  NULL,
+    [AbsenceTestA] bit  NULL,
+    [ExceptionRequstExplain] nvarchar(250)  NULL,
+    [PlusOne] bit  NULL,
+    [ApplicantSign] nvarchar(50)  NULL,
+    [ApplyDate] datetime  NULL,
+    [DepartmentHeadApprove] datetime  NULL,
+    [ReadPaperApprove] datetime  NULL,
+    [ReplacementApprove] bit  NULL,
+    [DepartmentHeadFullname] nvarchar(100)  NULL,
+    [DepartmentHeadSign] nvarchar(50)  NULL,
+    [DepartmentHeadSignDate] datetime  NULL,
+    [WastedYear] nvarchar(5)  NULL,
+    [WastedAmount] decimal(18,0)  NULL,
+    [Sign1] nvarchar(50)  NULL,
+    [Date1] datetime  NULL,
+    [Sign2] nvarchar(50)  NULL,
+    [Date2] datetime  NULL,
+    [Sign3] nvarchar(50)  NULL,
+    [Date3] datetime  NULL,
+    [Sign4] nvarchar(50)  NULL,
+    [Date4] datetime  NULL,
+    [Sign5] nvarchar(50)  NULL,
+    [Date5] datetime  NULL
 );
 GO
 

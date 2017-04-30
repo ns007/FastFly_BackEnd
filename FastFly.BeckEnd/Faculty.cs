@@ -11,8 +11,7 @@ namespace FastFly.BeckEnd
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
+    
     public partial class Faculty
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

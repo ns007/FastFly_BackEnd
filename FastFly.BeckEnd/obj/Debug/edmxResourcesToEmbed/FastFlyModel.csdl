@@ -176,16 +176,16 @@
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="9" />
-    <Property Name="ConcentrationExpenses" Type="String" Nullable="false" MaxLength="1" />
-    <Property Name="AccommodationAbroad" Type="String" Nullable="false" MaxLength="1" />
-    <Property Name="StayExpense" Type="String" Nullable="false" MaxLength="1" />
-    <Property Name="CarRent" Type="String" Nullable="false" MaxLength="1" />
-    <Property Name="OtherOxpense" Type="String" Nullable="false" MaxLength="1" />
-    <Property Name="AdvanceGiven" Type="String" Nullable="false" MaxLength="1" />
-    <Property Name="AdvanceAmount" Type="Decimal" Nullable="false" />
-    <Property Name="SignPresididnt" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date" Type="DateTime" Nullable="false" />
-    <Property Name="Sign" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="ConcentrationExpenses" Type="String" Nullable="true" MaxLength="1" />
+    <Property Name="AccommodationAbroad" Type="String" Nullable="true" MaxLength="1" />
+    <Property Name="StayExpense" Type="String" Nullable="true" MaxLength="1" />
+    <Property Name="CarRent" Type="String" Nullable="true" MaxLength="1" />
+    <Property Name="OtherOxpense" Type="String" Nullable="true" MaxLength="1" />
+    <Property Name="AdvanceGiven" Type="String" Nullable="true" MaxLength="1" />
+    <Property Name="AdvanceAmount" Type="Decimal" Nullable="true" />
+    <Property Name="SignPresididnt" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="Date" Type="DateTime" Nullable="true" />
+    <Property Name="Sign" Type="String" Nullable="true" MaxLength="50" />
     <NavigationProperty Name="User" Relationship="FastFlyModel.UserReckoningDocument" FromRole="ReckoningDocument" ToRole="User" />
   </EntityType>
   <EntityType Name="OtherOxpense">
@@ -251,42 +251,42 @@
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="9" />
-    <Property Name="ColleagueType" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="DepartureDate" Type="DateTime" Nullable="false" />
-    <Property Name="ReturnDate" Type="DateTime" Nullable="false" />
-    <Property Name="TotalDays" Type="Int32" Nullable="false" />
-    <Property Name="TravelPurpose" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="TotalRequsetAmount" Type="Int32" Nullable="false" />
-    <Property Name="TotalEselDays" Type="Int32" Nullable="false" />
-    <Property Name="LastReturnDate" Type="DateTime" Nullable="false" />
-    <Property Name="TeacheDuringTravel" Type="Boolean" Nullable="false" />
-    <Property Name="ReplacingInTests" Type="Boolean" Nullable="false" />
-    <Property Name="ResearchTraining" Type="Boolean" Nullable="false" />
-    <Property Name="AboveWeek" Type="Boolean" Nullable="false" />
-    <Property Name="MoreThenOneTravel" Type="Boolean" Nullable="false" />
-    <Property Name="AbsenceTestA" Type="Boolean" Nullable="false" />
-    <Property Name="ExceptionRequstExplain" Type="String" Nullable="false" MaxLength="250" />
-    <Property Name="PlusOne" Type="Boolean" Nullable="false" />
-    <Property Name="ApplicantSign" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="ApplyDate" Type="DateTime" Nullable="false" />
-    <Property Name="DepartmentHeadApprove" Type="DateTime" Nullable="false" />
-    <Property Name="ReadPaperApprove" Type="DateTime" Nullable="false" />
-    <Property Name="ReplacementApprove" Type="Boolean" Nullable="false" />
-    <Property Name="DepartmentHeadFullname" Type="String" Nullable="false" MaxLength="100" />
-    <Property Name="DepartmentHeadSign" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="DepartmentHeadSignDate" Type="DateTime" Nullable="false" />
-    <Property Name="WastedYear" Type="String" Nullable="false" MaxLength="5" />
-    <Property Name="WastedAmount" Type="Decimal" Nullable="false" />
-    <Property Name="Sign1" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date1" Type="DateTime" Nullable="false" />
-    <Property Name="Sign2" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date2" Type="DateTime" Nullable="false" />
-    <Property Name="Sign3" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date3" Type="DateTime" Nullable="false" />
-    <Property Name="Sign4" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date4" Type="DateTime" Nullable="false" />
-    <Property Name="Sign5" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date5" Type="DateTime" Nullable="false" />
+    <Property Name="ColleagueType" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="DepartureDate" Type="DateTime" Nullable="true" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="true" />
+    <Property Name="TotalDays" Type="Int32" Nullable="true" />
+    <Property Name="TravelPurpose" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="TotalRequsetAmount" Type="Int32" Nullable="true" />
+    <Property Name="TotalEselDays" Type="Int32" Nullable="true" />
+    <Property Name="LastReturnDate" Type="DateTime" Nullable="true" />
+    <Property Name="TeacheDuringTravel" Type="Boolean" Nullable="true" />
+    <Property Name="ReplacingInTests" Type="Boolean" Nullable="true" />
+    <Property Name="ResearchTraining" Type="Boolean" Nullable="true" />
+    <Property Name="AboveWeek" Type="Boolean" Nullable="true" />
+    <Property Name="MoreThenOneTravel" Type="Boolean" Nullable="true" />
+    <Property Name="AbsenceTestA" Type="Boolean" Nullable="true" />
+    <Property Name="ExceptionRequstExplain" Type="String" Nullable="true" MaxLength="250" />
+    <Property Name="PlusOne" Type="Boolean" Nullable="true" />
+    <Property Name="ApplicantSign" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="ApplyDate" Type="DateTime" Nullable="true" />
+    <Property Name="DepartmentHeadApprove" Type="DateTime" Nullable="true" />
+    <Property Name="ReadPaperApprove" Type="DateTime" Nullable="true" />
+    <Property Name="ReplacementApprove" Type="Boolean" Nullable="true" />
+    <Property Name="DepartmentHeadFullname" Type="String" Nullable="true" MaxLength="100" />
+    <Property Name="DepartmentHeadSign" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="DepartmentHeadSignDate" Type="DateTime" Nullable="true" />
+    <Property Name="WastedYear" Type="String" Nullable="true" MaxLength="5" />
+    <Property Name="WastedAmount" Type="Decimal" Nullable="true" />
+    <Property Name="Sign1" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="Date1" Type="DateTime" Nullable="true" />
+    <Property Name="Sign2" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="Date2" Type="DateTime" Nullable="true" />
+    <Property Name="Sign3" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="Date3" Type="DateTime" Nullable="true" />
+    <Property Name="Sign4" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="Date4" Type="DateTime" Nullable="true" />
+    <Property Name="Sign5" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="Date5" Type="DateTime" Nullable="true" />
     <NavigationProperty Name="User" Relationship="FastFlyModel.UserApplyDocument" FromRole="ApplyDocument" ToRole="User" />
   </EntityType>
   <Association Name="UserApplyDocument">

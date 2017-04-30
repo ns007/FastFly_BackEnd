@@ -82,7 +82,6 @@ namespace FastFly.BeckEnd.Controllers
                 //if headofdepartemt sign the document and approve the trip send mail to all signers.
                 if(applyDocument.DepartmentHeadSign != null)
                 {
-                    
                     var ApproveUsers = db.Users.Where(b => b.Role == "TripApprove");
                     List<string> approveUsers = new List<string>();
                     foreach (User user in ApproveUsers)

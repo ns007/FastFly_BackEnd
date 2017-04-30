@@ -22,9 +22,9 @@ namespace FastFly.BeckEnd
         public string CarRent { get; set; }
         public string OtherOxpense { get; set; }
         public string AdvanceGiven { get; set; }
-        public decimal AdvanceAmount { get; set; }
+        public Nullable<decimal> AdvanceAmount { get; set; }
         public string SignPresididnt { get; set; }
-        public System.DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string Sign { get; set; }
     
         public virtual User User { get; set; }
