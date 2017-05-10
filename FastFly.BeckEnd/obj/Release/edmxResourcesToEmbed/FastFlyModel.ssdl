@@ -130,16 +130,16 @@
     </Key>
     <Property Name="DocId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="9" />
-    <Property Name="ConcentrationExpenses" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="AccommodationAbroad" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="StayExpense" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="CarRent" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="OtherOxpense" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="AdvanceGiven" Type="nvarchar" Nullable="false" MaxLength="1" />
-    <Property Name="AdvanceAmount" Type="decimal" Nullable="false" />
-    <Property Name="SignPresididnt" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Sign" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ConcentrationExpenses" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="AccommodationAbroad" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="StayExpense" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="CarRent" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="OtherOxpense" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="AdvanceGiven" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="AdvanceAmount" Type="decimal" Nullable="true" />
+    <Property Name="SignPresididnt" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="Sign" Type="nvarchar" Nullable="true" MaxLength="50" />
   </EntityType>
   <EntityType Name="OtherOxpenses">
     <Key>
@@ -191,42 +191,42 @@
     </Key>
     <Property Name="DocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="9" />
-    <Property Name="ColleagueType" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="DepartureDate" Type="datetime" Nullable="false" />
-    <Property Name="ReturnDate" Type="datetime" Nullable="false" />
-    <Property Name="TotalDays" Type="int" Nullable="false" />
-    <Property Name="TravelPurpose" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="TotalRequsetAmount" Type="int" Nullable="false" />
-    <Property Name="TotalEselDays" Type="int" Nullable="false" />
-    <Property Name="LastReturnDate" Type="datetime" Nullable="false" />
-    <Property Name="TeacheDuringTravel" Type="bit" Nullable="false" />
-    <Property Name="ReplacingInTests" Type="bit" Nullable="false" />
-    <Property Name="ResearchTraining" Type="bit" Nullable="false" />
-    <Property Name="AboveWeek" Type="bit" Nullable="false" />
-    <Property Name="MoreThenOneTravel" Type="bit" Nullable="false" />
-    <Property Name="AbsenceTestA" Type="bit" Nullable="false" />
-    <Property Name="ExceptionRequstExplain" Type="nvarchar" Nullable="false" MaxLength="250" />
-    <Property Name="PlusOne" Type="bit" Nullable="false" />
-    <Property Name="ApplicantSign" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="ApplyDate" Type="datetime" Nullable="false" />
-    <Property Name="DepartmentHeadApprove" Type="datetime" Nullable="false" />
-    <Property Name="ReadPaperApprove" Type="datetime" Nullable="false" />
-    <Property Name="ReplacementApprove" Type="bit" Nullable="false" />
-    <Property Name="DepartmentHeadFullname" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="DepartmentHeadSign" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="DepartmentHeadSignDate" Type="datetime" Nullable="false" />
-    <Property Name="WastedYear" Type="nvarchar" Nullable="false" MaxLength="5" />
-    <Property Name="WastedAmount" Type="decimal" Nullable="false" />
-    <Property Name="Sign1" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Date1" Type="datetime" Nullable="false" />
-    <Property Name="Sign2" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Date2" Type="datetime" Nullable="false" />
-    <Property Name="Sign3" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Date3" Type="datetime" Nullable="false" />
-    <Property Name="Sign4" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Date4" Type="datetime" Nullable="false" />
-    <Property Name="Sign5" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Date5" Type="datetime" Nullable="false" />
+    <Property Name="ColleagueType" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DepartureDate" Type="datetime" Nullable="true" />
+    <Property Name="ReturnDate" Type="datetime" Nullable="true" />
+    <Property Name="TotalDays" Type="int" Nullable="true" />
+    <Property Name="TravelPurpose" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="TotalRequsetAmount" Type="int" Nullable="true" />
+    <Property Name="TotalEselDays" Type="int" Nullable="true" />
+    <Property Name="LastReturnDate" Type="datetime" Nullable="true" />
+    <Property Name="TeacheDuringTravel" Type="bit" Nullable="true" />
+    <Property Name="ReplacingInTests" Type="bit" Nullable="true" />
+    <Property Name="ResearchTraining" Type="bit" Nullable="true" />
+    <Property Name="AboveWeek" Type="bit" Nullable="true" />
+    <Property Name="MoreThenOneTravel" Type="bit" Nullable="true" />
+    <Property Name="AbsenceTestA" Type="bit" Nullable="true" />
+    <Property Name="ExceptionRequstExplain" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="PlusOne" Type="bit" Nullable="true" />
+    <Property Name="ApplicantSign" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ApplyDate" Type="datetime" Nullable="true" />
+    <Property Name="DepartmentHeadApprove" Type="datetime" Nullable="true" />
+    <Property Name="ReadPaperApprove" Type="datetime" Nullable="true" />
+    <Property Name="ReplacementApprove" Type="bit" Nullable="true" />
+    <Property Name="DepartmentHeadFullname" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="DepartmentHeadSign" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DepartmentHeadSignDate" Type="datetime" Nullable="true" />
+    <Property Name="WastedYear" Type="nvarchar" Nullable="true" MaxLength="5" />
+    <Property Name="WastedAmount" Type="decimal" Nullable="true" />
+    <Property Name="Sign1" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date1" Type="datetime" Nullable="true" />
+    <Property Name="Sign2" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date2" Type="datetime" Nullable="true" />
+    <Property Name="Sign3" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date3" Type="datetime" Nullable="true" />
+    <Property Name="Sign4" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date4" Type="datetime" Nullable="true" />
+    <Property Name="Sign5" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Date5" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="DestinationPeriods">
     <Key>

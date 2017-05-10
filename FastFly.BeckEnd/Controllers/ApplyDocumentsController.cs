@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using FastFly.BeckEnd;
 using System.Net.Mail;
+using FastFly.BeckEnd.enums;
 
 namespace FastFly.BeckEnd.Controllers
 {
@@ -82,7 +83,7 @@ namespace FastFly.BeckEnd.Controllers
                 //if headofdepartemt sign the document and approve the trip send mail to all signers.
                 if(applyDocument.DepartmentHeadSign != null)
                 {
-                    var ApproveUsers = db.Users.Where(b => b.Role == "TripApprove");
+                    var ApproveUsers = db.Users.Where(b => b.ApplicationRoleId == (int)ApplicationRoles.Signer);
                     List<string> approveUsers = new List<string>();
                     foreach (User user in ApproveUsers)
                     {
@@ -119,20 +120,12 @@ namespace FastFly.BeckEnd.Controllers
 
             db.ApplyDocuments.Add(applyDocument);
             db.SaveChanges();
-            //send auto mail to head of department
-            //user who send the doc
-            var applyUser = db.Users
-                    .Where(b => b.Id == applyDocument.UserId)
-                    .FirstOrDefault();
-            //headofdepartement who send the doc
-            var headOfDepUser = db.Users
-                    .Where(b => b.Role == "HeadOfDepartment" && b.DepartmentId == applyUser.DepartmentId)
-                    .FirstOrDefault();
-            List<string> emailAddress = new List<string>() { headOfDepUser.EmailAddress };
-            bool messageSucced = SendMail(emailAddress);
+            //creating empty ReckoningDocuments with same doc_id and userId
+            ReckoningDocument reckoningDocument = new ReckoningDocument() { DocId = applyDocument.DocId, UserId = applyDocument.UserId };
+            var result = new ReckoningDocumentsController().PostReckoningDocument(reckoningDocument);
 
-            //User temp = db.Users.FirstOrDefault(user => user.Role == "HeadOfDepartment" && user.DepartmentId == applyDocument.User.DepartmentId);
-            //====================================
+            sendMailToHeadOfDepartment(applyDocument);
+
             return CreatedAtRoute("DefaultApi", new { id = applyDocument.DocId }, applyDocument);
         }
 
@@ -148,7 +141,7 @@ namespace FastFly.BeckEnd.Controllers
 
             db.ApplyDocuments.Remove(applyDocument);
             db.SaveChanges();
-
+            //need to delete ReckoningDocuments with same docId as well
             return Ok(applyDocument);
         }
 
@@ -166,16 +159,37 @@ namespace FastFly.BeckEnd.Controllers
             return db.ApplyDocuments.Count(e => e.DocId == id) > 0;
         }
 
+        private void sendMailToHeadOfDepartment(ApplyDocument applyDocument)
+        {
+            //send auto mail to head of department of the user who sent the doc
+            var applyUser = db.Users
+                    .Where(b => b.Id == applyDocument.UserId)
+                    .FirstOrDefault();
+            var headOfDepUser = db.Users
+                    .Where(b => b.Role == "HeadOfDepartment" && b.DepartmentId == applyUser.DepartmentId)
+                    .FirstOrDefault();
+            if (headOfDepUser != null)
+            {
+                List<string> emailAddress = new List<string>();
+                emailAddress.Add(headOfDepUser.EmailAddress);
+                bool messageSucced = SendMail(emailAddress);
+                return;
+            }
+            else
+                return;
+        }
+
         private bool SendMail(List<string> emailAddresses)
         {
             try
             {
-                MailMessage mail = new MailMessage();
+                
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 foreach(string emailAddress in emailAddresses)
                 {
-                    mail.From = new MailAddress("shenkarfastfly@gmail.com");
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("shenkarfastfly@gmail.com","Shenkar - FastFly");
                     mail.To.Add(emailAddress);
                     mail.Subject = "Test Mail";
                     mail.Body = "This is for testing sending mail for head of department";
