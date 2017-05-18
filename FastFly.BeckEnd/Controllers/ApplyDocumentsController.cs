@@ -21,6 +21,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/ApplyDocuments
         public IQueryable<ApplyDocument> GetApplyDocuments()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.ApplyDocuments;
         }
 
