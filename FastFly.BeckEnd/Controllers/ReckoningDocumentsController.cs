@@ -19,6 +19,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/ReckoningDocuments
         public IQueryable<ReckoningDocument> GetReckoningDocuments()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.ReckoningDocuments;
         }
 

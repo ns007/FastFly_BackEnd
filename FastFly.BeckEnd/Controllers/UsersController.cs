@@ -20,7 +20,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            var x = db.Users;
+            db.Configuration.LazyLoadingEnabled = false;
             return db.Users;
         }
 
