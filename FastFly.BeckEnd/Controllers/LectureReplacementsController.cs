@@ -24,10 +24,11 @@ namespace FastFly.BeckEnd.Controllers
 
         // GET: api/LectureReplacements/5
         [ResponseType(typeof(LectureReplacement))]
-        public IHttpActionResult GetLectureReplacement(string id)
+        public IHttpActionResult GetLectureReplacement(int id)
         {
-            LectureReplacement lectureReplacement = db.LectureReplacements.Find(id);
-            if (lectureReplacement == null)
+            List<LectureReplacement> lectureReplacement = db.LectureReplacements.Where(d => d.DocId == id).ToList();
+            //LectureReplacement lectureReplacement = db.LectureReplacements.Find(id);
+            if (lectureReplacement.Count == 0 ||lectureReplacement == null)
             {
                 return NotFound();
             }

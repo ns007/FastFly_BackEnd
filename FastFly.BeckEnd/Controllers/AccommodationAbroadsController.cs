@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.AccommodationAbroads;
         }
 
-        // GET: api/AccommodationAbroads/5
+        // GET: api/AccommodationAbroads/5 the parameter is the reckoningDocument/ApplyDocument id 
         [ResponseType(typeof(AccommodationAbroad))]
         public IHttpActionResult GetAccommodationAbroad(int id)
         {
-            AccommodationAbroad accommodationAbroad = db.AccommodationAbroads.Find(id);
-            if (accommodationAbroad == null)
+            List<AccommodationAbroad> accommodationAbroad = db.AccommodationAbroads.Where(d => d.DocId == id).ToList();
+            if (accommodationAbroad.Count == 0 || accommodationAbroad == null)
             {
                 return NotFound();
             }

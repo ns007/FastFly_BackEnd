@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.CarRents;
         }
 
-        // GET: api/CarRents/5
+        // GET: api/CarRents/5 the parameter is the reckoningDocument/ApplyDocument id 
         [ResponseType(typeof(CarRent))]
         public IHttpActionResult GetCarRent(int id)
         {
-            CarRent carRent = db.CarRents.Find(id);
-            if (carRent == null)
+            List<CarRent> carRent = db.CarRents.Where(d => d.DocId == id).ToList();
+            if (carRent.Count == 0 || carRent == null)
             {
                 return NotFound();
             }

@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.OtherOxpenses;
         }
 
-        // GET: api/OtherOxpenses/5
+        // GET: api/OtherOxpenses/5 the parameter is the reckoning document id 
         [ResponseType(typeof(OtherOxpense))]
         public IHttpActionResult GetOtherOxpense(int id)
         {
-            OtherOxpense otherOxpense = db.OtherOxpenses.Find(id);
-            if (otherOxpense == null)
+            List<OtherOxpense> otherOxpense = db.OtherOxpenses.Where(d => d.DocId == id).ToList();
+            if (otherOxpense.Count == 0 || otherOxpense == null)
             {
                 return NotFound();
             }

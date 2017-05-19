@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.StayExpenses;
         }
 
-        // GET: api/StayExpenses/5
+        // GET: api/StayExpenses/5 - the parameter is the reckoningDocument id
         [ResponseType(typeof(StayExpense))]
         public IHttpActionResult GetStayExpense(int id)
         {
-            StayExpense stayExpense = db.StayExpenses.Find(id);
-            if (stayExpense == null)
+            List<StayExpense> stayExpense = db.StayExpenses.Where(d => d.DocId == id).ToList();
+            if (stayExpense.Count == 0 || stayExpense == null)
             {
                 return NotFound();
             }

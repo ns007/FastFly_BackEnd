@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.Flights;
         }
 
-        // GET: api/Flights/5
+        // GET: api/Flights/5 the parameter is the reckoningDocument/ApplyDocument id 
         [ResponseType(typeof(Flight))]
-        public IHttpActionResult GetFlight(DateTime id)
+        public IHttpActionResult GetFlight(int id)
         {
-            Flight flight = db.Flights.Find(id);
-            if (flight == null)
+            List<Flight> flight = db.Flights.Where(d => d.DocId == id).ToList();
+            if (flight.Count == 0 || flight == null)
             {
                 return NotFound();
             }

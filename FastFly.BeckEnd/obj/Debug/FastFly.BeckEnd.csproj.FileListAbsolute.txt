@@ -127,8 +127,6 @@ C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFly.B
 C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFly.BeckEnd\bin\System.Web.Cors.dll
 C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFly.BeckEnd\bin\System.Web.Http.Cors.dll
 C:\Users\netanel\Documents\Visual Studio 2015\Projects\FastFly.BeckEnd\FastFly.BeckEnd\bin\System.Web.Http.Cors.xml
-C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.dll
-C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.pdb
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\ApplicationInsights.config
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\roslyn\csc.exe
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\roslyn\csc.exe.config
@@ -255,4 +253,6 @@ C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\Microsoft.Owin
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\System.Web.Http.Owin.xml
+C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.dll
+C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.pdb
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.csprojResolveAssemblyReference.cache

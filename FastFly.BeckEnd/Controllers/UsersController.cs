@@ -20,6 +20,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
+            var x = db.Users;
             return db.Users;
         }
 

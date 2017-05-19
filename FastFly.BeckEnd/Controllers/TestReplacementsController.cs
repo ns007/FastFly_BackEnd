@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.TestReplacements;
         }
 
-        // GET: api/TestReplacements/5
+        // GET: api/TestReplacements/5 - the parameter is the docId number.
         [ResponseType(typeof(TestReplacement))]
-        public IHttpActionResult GetTestReplacement(string id)
+        public IHttpActionResult GetTestReplacement(int id)
         {
-            TestReplacement testReplacement = db.TestReplacements.Find(id);
-            if (testReplacement == null)
+            List<TestReplacement> testReplacement = db.TestReplacements.Where(d => d.DocId == id).ToList();
+            if (testReplacement.Count == 0 || testReplacement == null)
             {
                 return NotFound();
             }

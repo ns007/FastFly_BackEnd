@@ -22,12 +22,12 @@ namespace FastFly.BeckEnd.Controllers
             return db.DestinationPeriods;
         }
 
-        // GET: api/DestinationPeriods/5
+        // GET: api/DestinationPeriods/5 the parameter is the reckoningDocument/ApplyDocument id 
         [ResponseType(typeof(DestinationPeriods))]
-        public IHttpActionResult GetDestinationPeriods(string id)
+        public IHttpActionResult GetDestinationPeriods(int id)
         {
-            DestinationPeriods destinationPeriods = db.DestinationPeriods.Find(id);
-            if (destinationPeriods == null)
+            List<DestinationPeriods> destinationPeriods = db.DestinationPeriods.Where(d=> d.DocId == id).ToList();
+            if (destinationPeriods.Count == 0 || destinationPeriods == null)
             {
                 return NotFound();
             }
