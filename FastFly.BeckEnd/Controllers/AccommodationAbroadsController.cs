@@ -72,32 +72,34 @@ namespace FastFly.BeckEnd.Controllers
 
         // POST: api/AccommodationAbroads
         [ResponseType(typeof(AccommodationAbroad))]
-        public IHttpActionResult PostAccommodationAbroad(AccommodationAbroad accommodationAbroad)
+        public IHttpActionResult PostAccommodationAbroad(AccommodationAbroad[] accommodationsAbroad)
         {
-            if (!ModelState.IsValid)
+            foreach(AccommodationAbroad accommodationAbroad in accommodationsAbroad)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.AccommodationAbroads.Add(accommodationAbroad);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (AccommodationAbroadExists(accommodationAbroad.DocId))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                db.AccommodationAbroads.Add(accommodationAbroad);
+
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (AccommodationAbroadExists(accommodationAbroad.DocId))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = accommodationAbroad.DocId }, accommodationAbroad);
+            return Ok(accommodationsAbroad);
         }
 
         // DELETE: api/AccommodationAbroads/5

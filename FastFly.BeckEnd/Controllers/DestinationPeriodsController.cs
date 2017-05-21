@@ -72,32 +72,35 @@ namespace FastFly.BeckEnd.Controllers
 
         // POST: api/DestinationPeriods
         [ResponseType(typeof(DestinationPeriods))]
-        public IHttpActionResult PostDestinationPeriods(DestinationPeriods destinationPeriods)
+        public IHttpActionResult PostDestinationPeriods(DestinationPeriods[] destinationsPeriods)
         {
-            if (!ModelState.IsValid)
+            foreach(DestinationPeriods destinationPeriods in destinationsPeriods)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.DestinationPeriods.Add(destinationPeriods);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (DestinationPeriodsExists(destinationPeriods.CountryCode))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                db.DestinationPeriods.Add(destinationPeriods);
+
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (DestinationPeriodsExists(destinationPeriods.CountryCode))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = destinationPeriods.CountryCode }, destinationPeriods);
+            return Ok(destinationsPeriods);
         }
 
         // DELETE: api/DestinationPeriods/5

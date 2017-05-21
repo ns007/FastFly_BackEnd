@@ -73,32 +73,35 @@ namespace FastFly.BeckEnd.Controllers
 
         // POST: api/LectureReplacements
         [ResponseType(typeof(LectureReplacement))]
-        public IHttpActionResult PostLectureReplacement(LectureReplacement lectureReplacement)
+        public IHttpActionResult PostLectureReplacement(LectureReplacement[] lecturesReplacement)
         {
-            if (!ModelState.IsValid)
+            foreach(LectureReplacement lectureReplacement in lecturesReplacement)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.LectureReplacements.Add(lectureReplacement);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (LectureReplacementExists(lectureReplacement.CourseName))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                db.LectureReplacements.Add(lectureReplacement);
+
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (LectureReplacementExists(lectureReplacement.CourseName))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = lectureReplacement.CourseName }, lectureReplacement);
+            return Ok(lecturesReplacement);
         }
 
         // DELETE: api/LectureReplacements/5

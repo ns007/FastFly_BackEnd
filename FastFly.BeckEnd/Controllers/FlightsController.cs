@@ -37,67 +37,71 @@ namespace FastFly.BeckEnd.Controllers
 
         // PUT: api/Flights/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFlight(DateTime id, Flight flight)
+        public IHttpActionResult PutFlight(int DocId, Flight[] flights)
         {
-            if (!ModelState.IsValid)
+            foreach(Flight flight in flights)
             {
-                return BadRequest(ModelState);
-            }
-
-            if (id != flight.FlightDate)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(flight).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FlightExists(id))
+                if (!ModelState.IsValid)
                 {
-                    return NotFound();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                if (DocId != flight.DocId)
                 {
-                    throw;
+                    return BadRequest();
+                }
+
+                db.Entry(flight).State = EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!FlightExists(DocId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
+            
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Flights
         [ResponseType(typeof(Flight))]
-        public IHttpActionResult PostFlight(Flight flight)
+        public IHttpActionResult PostFlight(Flight[] flights)
         {
-            if (!ModelState.IsValid)
+            foreach (Flight flight in flights)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.Flights.Add(flight);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (FlightExists(flight.FlightDate))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+                db.Flights.Add(flight);
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (FlightExists(flight.DocId))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = flight.FlightDate }, flight);
+            return Ok(flights);
+            //return CreatedAtRoute("DefaultApi", new { id = flight.FlightDate }, flight);
         }
 
         // DELETE: api/Flights/5
@@ -125,9 +129,9 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool FlightExists(DateTime id)
+        private bool FlightExists(int docId)
         {
-            return db.Flights.Count(e => e.FlightDate == id) > 0;
+            return db.Flights.Count(e => e.DocId == docId) > 0;
         }
     }
 }

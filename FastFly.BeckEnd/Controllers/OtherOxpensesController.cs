@@ -57,7 +57,7 @@ namespace FastFly.BeckEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OtherOxpenseExists(id))
+                if (!OtherOxpenseExists(id,otherOxpense.ExpenseEssence))
                 {
                     return NotFound();
                 }
@@ -72,32 +72,34 @@ namespace FastFly.BeckEnd.Controllers
 
         // POST: api/OtherOxpenses
         [ResponseType(typeof(OtherOxpense))]
-        public IHttpActionResult PostOtherOxpense(OtherOxpense otherOxpense)
+        public IHttpActionResult PostOtherOxpense(OtherOxpense[] otherOxpenses)
         {
-            if (!ModelState.IsValid)
+            foreach(OtherOxpense otherOxpense in otherOxpenses)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.OtherOxpenses.Add(otherOxpense);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (OtherOxpenseExists(otherOxpense.DocId))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                db.OtherOxpenses.Add(otherOxpense);
+
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (OtherOxpenseExists(otherOxpense.DocId,otherOxpense.ExpenseEssence))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = otherOxpense.DocId }, otherOxpense);
+            return Ok(otherOxpenses);
         }
 
         // DELETE: api/OtherOxpenses/5
@@ -125,9 +127,9 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool OtherOxpenseExists(int id)
+        private bool OtherOxpenseExists(int id,string expenseEssence)
         {
-            return db.OtherOxpenses.Count(e => e.DocId == id) > 0;
+            return db.OtherOxpenses.Count(e => e.DocId == id && e.ExpenseEssence == expenseEssence) > 0;
         }
     }
 }
