@@ -57,7 +57,7 @@ namespace FastFly.BeckEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StayExpenseExists(id))
+                if (!StayExpenseExists(id,stayExpense.FromDate,stayExpense.ToDate))
                 {
                     return NotFound();
                 }
@@ -72,32 +72,34 @@ namespace FastFly.BeckEnd.Controllers
 
         // POST: api/StayExpenses
         [ResponseType(typeof(StayExpense))]
-        public IHttpActionResult PostStayExpense(StayExpense stayExpense)
+        public IHttpActionResult PostStayExpense(StayExpense[] stayExpenses)
         {
-            if (!ModelState.IsValid)
+            foreach(StayExpense stayExpense in stayExpenses)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.StayExpenses.Add(stayExpense);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (StayExpenseExists(stayExpense.DocId))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                db.StayExpenses.Add(stayExpense);
+
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (StayExpenseExists(stayExpense.DocId,stayExpense.FromDate,stayExpense.ToDate))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = stayExpense.DocId }, stayExpense);
+            return Ok(stayExpenses);
         }
 
         // DELETE: api/StayExpenses/5
@@ -125,9 +127,9 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool StayExpenseExists(int id)
+        private bool StayExpenseExists(int id,DateTime fromdate,DateTime todate)
         {
-            return db.StayExpenses.Count(e => e.DocId == id) > 0;
+            return db.StayExpenses.Count(e => e.DocId == id && e.FromDate == fromdate && e.ToDate == todate) > 0;
         }
     }
 }

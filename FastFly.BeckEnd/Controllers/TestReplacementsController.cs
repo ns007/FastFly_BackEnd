@@ -72,32 +72,34 @@ namespace FastFly.BeckEnd.Controllers
 
         // POST: api/TestReplacements
         [ResponseType(typeof(TestReplacement))]
-        public IHttpActionResult PostTestReplacement(TestReplacement testReplacement)
+        public IHttpActionResult PostTestReplacement(TestReplacement[] testsReplacement)
         {
-            if (!ModelState.IsValid)
+            foreach(TestReplacement testReplacement in testsReplacement)
             {
-                return BadRequest(ModelState);
-            }
-
-            db.TestReplacements.Add(testReplacement);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (TestReplacementExists(testReplacement.CourseName))
+                if (!ModelState.IsValid)
                 {
-                    return Conflict();
+                    return BadRequest(ModelState);
                 }
-                else
+
+                db.TestReplacements.Add(testReplacement);
+
+                try
                 {
-                    throw;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    if (TestReplacementExists(testReplacement.DocId, testReplacement.CourseName, testReplacement.TestDate))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = testReplacement.CourseName }, testReplacement);
+            return Ok(testsReplacement);
         }
 
         // DELETE: api/TestReplacements/5
@@ -125,9 +127,9 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TestReplacementExists(string id)
+        private bool TestReplacementExists(int docId,string id,DateTime testdate)
         {
-            return db.TestReplacements.Count(e => e.CourseName == id) > 0;
+            return db.TestReplacements.Count(e => e.CourseName == id && e.DocId == docId && e.TestDate == testdate) > 0;
         }
     }
 }
