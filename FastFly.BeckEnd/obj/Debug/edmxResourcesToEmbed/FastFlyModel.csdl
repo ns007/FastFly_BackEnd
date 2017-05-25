@@ -49,14 +49,14 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="9" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="10" />
-    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" />
-    <Property Name="FirstName" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="LastName" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Role" Type="String" Nullable="false" MaxLength="20" />
+    <Property Name="Id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="9" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
     <Property Name="PercentageJob" Type="Int32" Nullable="true" />
-    <Property Name="CellNum" Type="String" Nullable="true" MaxLength="10" />
+    <Property Name="CellNum" Type="String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Department1" Relationship="FastFlyModel.DepartmentUser" FromRole="User" ToRole="Department" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Faculty1" Relationship="FastFlyModel.FacultyUser" FromRole="User" ToRole="Faculty" />
@@ -65,13 +65,14 @@
     <Property Name="ApplicationRoleId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ApplyDocuments" Relationship="FastFlyModel.UserApplyDocument" FromRole="User" ToRole="ApplyDocument" />
     <NavigationProperty Name="ReckoningDocuments" Relationship="FastFlyModel.UserReckoningDocument" FromRole="User" ToRole="ReckoningDocument" />
+    <Property Name="UserEnable" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DepartmentName" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="DepartmentName" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Users" Relationship="FastFlyModel.DepartmentUser" FromRole="Department" ToRole="User" />
   </EntityType>
   <Association Name="DepartmentUser">
@@ -91,7 +92,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Users" Relationship="FastFlyModel.FacultyUser" FromRole="Faculty" ToRole="User" />
   </EntityType>
   <Association Name="FacultyUser">
@@ -111,7 +112,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Users" Relationship="FastFlyModel.ApplicationRoleUser" FromRole="ApplicationRole" ToRole="User" />
   </EntityType>
   <Association Name="ApplicationRoleUser">
@@ -133,17 +134,17 @@
       <PropertyRef Name="ToDate" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="FromDate" Type="DateTime" Nullable="false" />
-    <Property Name="ToDate" Type="DateTime" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="TotalDays" Type="Int32" Nullable="true" />
-    <Property Name="Cost" Type="Decimal" Nullable="true" />
+    <Property Name="Cost" Type="Decimal" Nullable="true" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="CountryCode" />
     </Key>
-    <Property Name="CountryCode" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="3" />
-    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="CountryCode" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Flights" Relationship="FastFlyModel.CountryFlight" FromRole="Country" ToRole="Flight" />
     <NavigationProperty Name="DestinationPeriods" Relationship="FastFlyModel.CountryDestinationPeriods" FromRole="Country" ToRole="DestinationPeriods" />
   </EntityType>
@@ -153,10 +154,10 @@
       <PropertyRef Name="TestDate" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="CourseName" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="50" />
-    <Property Name="TestDate" Type="DateTime" Nullable="false" />
-    <Property Name="SubstituteLucterer" Type="String" Nullable="false" MaxLength="100" />
-    <Property Name="ExamPeriod" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="CourseName" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TestDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SubstituteLucterer" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ExamPeriod" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="StayExpense">
     <Key>
@@ -165,27 +166,27 @@
       <PropertyRef Name="ToDate" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="FromDate" Type="DateTime" Nullable="false" />
-    <Property Name="ToDate" Type="DateTime" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="TotalDays" Type="Int32" Nullable="false" />
-    <Property Name="FeePerDay" Type="Decimal" Nullable="false" />
+    <Property Name="FeePerDay" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="ReckoningDocument">
     <Key>
       <PropertyRef Name="DocId" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="9" />
-    <Property Name="ConcentrationExpenses" Type="String" Nullable="true" MaxLength="1" />
-    <Property Name="AccommodationAbroad" Type="String" Nullable="true" MaxLength="1" />
-    <Property Name="StayExpense" Type="String" Nullable="true" MaxLength="1" />
-    <Property Name="CarRent" Type="String" Nullable="true" MaxLength="1" />
-    <Property Name="OtherOxpense" Type="String" Nullable="true" MaxLength="1" />
-    <Property Name="AdvanceGiven" Type="String" Nullable="true" MaxLength="1" />
-    <Property Name="AdvanceAmount" Type="Decimal" Nullable="true" />
-    <Property Name="SignPresididnt" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Date" Type="DateTime" Nullable="true" />
-    <Property Name="Sign" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="false" />
+    <Property Name="ConcentrationExpenses" Type="String" Nullable="true" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="AccommodationAbroad" Type="String" Nullable="true" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="StayExpense" Type="String" Nullable="true" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="CarRent" Type="String" Nullable="true" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="OtherOxpense" Type="String" Nullable="true" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="AdvanceGiven" Type="String" Nullable="true" MaxLength="1" Unicode="true" FixedLength="false" />
+    <Property Name="AdvanceAmount" Type="Decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="SignPresididnt" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="Sign" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="FastFlyModel.UserReckoningDocument" FromRole="ReckoningDocument" ToRole="User" />
   </EntityType>
   <EntityType Name="OtherOxpense">
@@ -194,8 +195,8 @@
       <PropertyRef Name="ExpenseEssence" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="ExpenseEssence" Type="String" Nullable="false" MaxLength="100" />
-    <Property Name="Cost" Type="Decimal" Nullable="false" />
+    <Property Name="ExpenseEssence" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="LectureReplacement">
     <Key>
@@ -204,22 +205,22 @@
       <PropertyRef Name="FromHour" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="Date" Type="DateTime" Nullable="false" />
-    <Property Name="FromHour" Type="Time" Nullable="false" />
-    <Property Name="ToHour" Type="Time" Nullable="false" />
-    <Property Name="CompleteBy" Type="String" Nullable="false" MaxLength="100" />
+    <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FromHour" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ToHour" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="CompleteBy" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Flight">
     <Key>
       <PropertyRef Name="FlightDate" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="FlightDate" Type="DateTime" Nullable="false" />
-    <Property Name="Class" Type="String" Nullable="false" MaxLength="25" />
-    <Property Name="Cost" Type="Decimal" Nullable="false" />
+    <Property Name="FlightDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Class" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Country" Relationship="FastFlyModel.CountryFlight" FromRole="Flight" ToRole="Country" />
-    <Property Name="CountryCodeDest" Type="String" Nullable="false" MaxLength="3" />
+    <Property Name="CountryCodeDest" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
   </EntityType>
   <Association Name="CountryFlight">
     <End Type="FastFlyModel.Country" Role="Country" Multiplicity="1" />
@@ -240,53 +241,53 @@
       <PropertyRef Name="ToDate" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="FromDate" Type="DateTime" Nullable="false" />
-    <Property Name="ToDate" Type="DateTime" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="TotalNights" Type="Int32" Nullable="false" />
-    <Property Name="Cost" Type="Decimal" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="ApplyDocument">
     <Key>
       <PropertyRef Name="DocId" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="9" />
-    <Property Name="ColleagueType" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="DepartureDate" Type="DateTime" Nullable="true" />
-    <Property Name="ReturnDate" Type="DateTime" Nullable="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="9" Unicode="true" FixedLength="false" />
+    <Property Name="ColleagueType" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DepartureDate" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="true" Precision="3" />
     <Property Name="TotalDays" Type="Int32" Nullable="true" />
-    <Property Name="TravelPurpose" Type="String" Nullable="true" MaxLength="50" />
+    <Property Name="TravelPurpose" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="TotalRequsetAmount" Type="Int32" Nullable="true" />
     <Property Name="TotalEselDays" Type="Int32" Nullable="true" />
-    <Property Name="LastReturnDate" Type="DateTime" Nullable="true" />
+    <Property Name="LastReturnDate" Type="DateTime" Nullable="true" Precision="3" />
     <Property Name="TeacheDuringTravel" Type="Boolean" Nullable="true" />
     <Property Name="ReplacingInTests" Type="Boolean" Nullable="true" />
     <Property Name="ResearchTraining" Type="Boolean" Nullable="true" />
     <Property Name="AboveWeek" Type="Boolean" Nullable="true" />
     <Property Name="MoreThenOneTravel" Type="Boolean" Nullable="true" />
     <Property Name="AbsenceTestA" Type="Boolean" Nullable="true" />
-    <Property Name="ExceptionRequstExplain" Type="String" Nullable="true" MaxLength="250" />
+    <Property Name="ExceptionRequstExplain" Type="String" Nullable="true" MaxLength="250" Unicode="true" FixedLength="false" />
     <Property Name="PlusOne" Type="Boolean" Nullable="true" />
-    <Property Name="ApplicantSign" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="ApplyDate" Type="DateTime" Nullable="true" />
-    <Property Name="DepartmentHeadApprove" Type="DateTime" Nullable="true" />
-    <Property Name="ReadPaperApprove" Type="DateTime" Nullable="true" />
+    <Property Name="ApplicantSign" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ApplyDate" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="DepartmentHeadApprove" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="ReadPaperApprove" Type="DateTime" Nullable="true" Precision="3" />
     <Property Name="ReplacementApprove" Type="Boolean" Nullable="true" />
-    <Property Name="DepartmentHeadFullname" Type="String" Nullable="true" MaxLength="100" />
-    <Property Name="DepartmentHeadSign" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="DepartmentHeadSignDate" Type="DateTime" Nullable="true" />
-    <Property Name="WastedYear" Type="String" Nullable="true" MaxLength="5" />
-    <Property Name="WastedAmount" Type="Decimal" Nullable="true" />
-    <Property Name="Sign1" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Date1" Type="DateTime" Nullable="true" />
-    <Property Name="Sign2" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Date2" Type="DateTime" Nullable="true" />
-    <Property Name="Sign3" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Date3" Type="DateTime" Nullable="true" />
-    <Property Name="Sign4" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Date4" Type="DateTime" Nullable="true" />
-    <Property Name="Sign5" Type="String" Nullable="true" MaxLength="50" />
-    <Property Name="Date5" Type="DateTime" Nullable="true" />
+    <Property Name="DepartmentHeadFullname" Type="String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentHeadSign" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DepartmentHeadSignDate" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="WastedYear" Type="String" Nullable="true" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="WastedAmount" Type="Decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Sign1" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date1" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="Sign2" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date2" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="Sign3" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date3" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="Sign4" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date4" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="Sign5" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date5" Type="DateTime" Nullable="true" Precision="3" />
     <NavigationProperty Name="User" Relationship="FastFlyModel.UserApplyDocument" FromRole="ApplyDocument" ToRole="User" />
   </EntityType>
   <Association Name="UserApplyDocument">
@@ -307,14 +308,14 @@
       <PropertyRef Name="CountryCode" />
     </Key>
     <Property Name="DocId" Type="Int32" Nullable="false" />
-    <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" />
-    <Property Name="FromDate" Type="DateTime" Nullable="false" />
-    <Property Name="ToDate" Type="DateTime" Nullable="false" />
-    <Property Name="Flight" Type="String" Nullable="false" MaxLength="20" />
-    <Property Name="Hotel" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="RideBy" Type="String" Nullable="false" MaxLength="50" />
-    <Property Name="ParticipationFee" Type="Decimal" Nullable="false" />
-    <Property Name="TotalAmountRequested" Type="Decimal" Nullable="false" />
+    <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Flight" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Hotel" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="RideBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ParticipationFee" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TotalAmountRequested" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <NavigationProperty Name="Country" Relationship="FastFlyModel.CountryDestinationPeriods" FromRole="DestinationPeriods" ToRole="Country" />
   </EntityType>
   <Association Name="CountryDestinationPeriods">

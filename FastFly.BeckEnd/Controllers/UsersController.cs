@@ -40,7 +40,7 @@ namespace FastFly.BeckEnd.Controllers
         public IHttpActionResult Get(string id, string Password)
         {
             User user = db.Users.Find(id);
-            if (user == null || !user.Password.Equals(Password))
+            if (user == null || !user.Password.Equals(Password) || user.UserEnable == false)
             {
                 return NotFound();
             }
@@ -122,8 +122,7 @@ namespace FastFly.BeckEnd.Controllers
             {
                 return NotFound();
             }
-
-            db.Users.Remove(user);
+            user.UserEnable = true;
             db.SaveChanges();
 
             return Ok(user);

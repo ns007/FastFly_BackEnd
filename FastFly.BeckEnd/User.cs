@@ -32,6 +32,7 @@ namespace FastFly.BeckEnd
         public int DepartmentId { get; set; }
         public int FacultyId { get; set; }
         public int ApplicationRoleId { get; set; }
+        public bool UserEnable { get; set; }
     
         public virtual Department Department1 { get; set; }
         public virtual Faculty Faculty1 { get; set; }

@@ -37,14 +37,14 @@ namespace FastFly.BeckEnd.Controllers
 
         // PUT: api/TestReplacements/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTestReplacement(string id, TestReplacement testReplacement)
+        public IHttpActionResult PutTestReplacement(int id, TestReplacement testReplacement)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != testReplacement.CourseName)
+            if (id != testReplacement.DocId)
             {
                 return BadRequest();
             }
@@ -57,7 +57,7 @@ namespace FastFly.BeckEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TestReplacementExists(id))
+                if (!TestReplacementExists(id,testReplacement.CourseName,testReplacement.TestDate))
                 {
                     return NotFound();
                 }
