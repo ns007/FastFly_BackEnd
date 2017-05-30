@@ -35,16 +35,18 @@ namespace FastFly.BeckEnd.Controllers
             return Ok(testReplacement);
         }
 
-        // PUT: api/TestReplacements/5
+        // PUT: api/TestReplacements/5/computer since/20-20-2006 12:00:00/
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTestReplacement(int id, TestReplacement testReplacement)
+        public IHttpActionResult PutTestReplacement(int docId,string courseName,string date, TestReplacement testReplacement)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != testReplacement.DocId)
+            DateTime testDate = Utilities.stringToDateTime(date);
+
+            if (docId != testReplacement.DocId || !courseName.Equals(testReplacement.CourseName) || (testDate.Year != testReplacement.TestDate.Year || testDate.Month != testReplacement.TestDate.Month || testDate.Day != testReplacement.TestDate.Day))
             {
                 return BadRequest();
             }
@@ -57,7 +59,7 @@ namespace FastFly.BeckEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TestReplacementExists(id,testReplacement.CourseName,testReplacement.TestDate))
+                if (!TestReplacementExists(docId, testReplacement.CourseName, date))
                 {
                     return NotFound();
                 }
@@ -89,7 +91,10 @@ namespace FastFly.BeckEnd.Controllers
                 }
                 catch (DbUpdateException)
                 {
-                    if (TestReplacementExists(testReplacement.DocId, testReplacement.CourseName, testReplacement.TestDate))
+                    string month = testReplacement.TestDate.Month.ToString().Length == 1 ? "0" + testReplacement.TestDate.Month.ToString() : testReplacement.TestDate.Month.ToString();
+                    string day = testReplacement.TestDate.Day.ToString().Length == 1 ? "0" + testReplacement.TestDate.Day.ToString() : testReplacement.TestDate.Day.ToString();
+                    string date = testReplacement.TestDate.Year + month + day;
+                    if (TestReplacementExists(testReplacement.DocId, testReplacement.CourseName, date))
                     {
                         return Conflict();
                     }
@@ -104,15 +109,16 @@ namespace FastFly.BeckEnd.Controllers
 
         // DELETE: api/TestReplacements/5
         [ResponseType(typeof(TestReplacement))]
-        public IHttpActionResult DeleteTestReplacement(string id)
+        public IHttpActionResult DeleteTestReplacement(int docId, string courseName, string date)
         {
-            TestReplacement testReplacement = db.TestReplacements.Find(id);
-            if (testReplacement == null)
+            DateTime testDate = Utilities.stringToDateTime(date);
+            List<TestReplacement> testReplacement = db.TestReplacements.Where(e => e.DocId == docId && e.CourseName.Equals(courseName) && (e.TestDate.Year == testDate.Year && e.TestDate.Month == testDate.Month && e.TestDate.Day == testDate.Day)).ToList();
+            if (testReplacement.Count != 1 || testReplacement == null)
             {
                 return NotFound();
             }
 
-            db.TestReplacements.Remove(testReplacement);
+            db.TestReplacements.Remove(testReplacement[0]);
             db.SaveChanges();
 
             return Ok(testReplacement);
@@ -127,9 +133,10 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TestReplacementExists(int docId,string id,DateTime testdate)
+        private bool TestReplacementExists(int docId, string id, string testdate)
         {
-            return db.TestReplacements.Count(e => e.CourseName == id && e.DocId == docId && e.TestDate == testdate) > 0;
+            DateTime testDate = Utilities.stringToDateTime(testdate);
+            return db.TestReplacements.Count(e => e.CourseName == id && e.DocId == docId && e.TestDate == testDate) > 0;
         }
     }
 }

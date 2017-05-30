@@ -331,6 +331,7 @@
     <Compile Include="User.cs">
       <DependentUpon>FastFlyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

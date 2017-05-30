@@ -27,7 +27,6 @@ namespace FastFly.BeckEnd.Controllers
         public IHttpActionResult GetLectureReplacement(int id)
         {
             List<LectureReplacement> lectureReplacement = db.LectureReplacements.Where(d => d.DocId == id).ToList();
-            //LectureReplacement lectureReplacement = db.LectureReplacements.Find(id);
             if (lectureReplacement.Count == 0 ||lectureReplacement == null)
             {
                 return NotFound();
@@ -36,16 +35,19 @@ namespace FastFly.BeckEnd.Controllers
             return Ok(lectureReplacement);
         }
 
-        // PUT: api/LectureReplacements/5
+        //PUT: api/LectureReplacements/5/CourseName/DateAsString/TimeAsString
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLectureReplacement(string id, LectureReplacement lectureReplacement)
+        public IHttpActionResult PutLectureReplacement(int docId,string courseName, string date, string fromHour,  LectureReplacement lectureReplacement)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != lectureReplacement.CourseName)
+            DateTime lectureDate = Utilities.stringToDateTime(date);
+            TimeSpan lectureTime = Utilities.stringToTimeSpan(fromHour);
+
+            if (docId != lectureReplacement.DocId || !courseName.Equals(lectureReplacement.CourseName) || (lectureDate.Year != lectureReplacement.Date.Year || lectureDate.Month != lectureReplacement.Date.Month || lectureDate.Day != lectureReplacement.Date.Day) || lectureTime != lectureReplacement.FromHour)
             {
                 return BadRequest();
             }
@@ -58,7 +60,7 @@ namespace FastFly.BeckEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LectureReplacementExists(id))
+                if (!LectureReplacementExists(docId,courseName, date, fromHour))
                 {
                     return NotFound();
                 }
@@ -90,7 +92,13 @@ namespace FastFly.BeckEnd.Controllers
                 }
                 catch (DbUpdateException)
                 {
-                    if (LectureReplacementExists(lectureReplacement.CourseName))
+                    string month = lectureReplacement.Date.Month.ToString().Length == 1 ? "0" + lectureReplacement.Date.Month.ToString() : lectureReplacement.Date.Month.ToString();
+                    string day = lectureReplacement.Date.Day.ToString().Length == 1 ? "0" + lectureReplacement.Date.Day.ToString() : lectureReplacement.Date.Day.ToString();
+                    string hours = lectureReplacement.FromHour.Hours.ToString().Length == 1 ? "0" + lectureReplacement.FromHour.Hours.ToString() : lectureReplacement.FromHour.Hours.ToString();
+                    string minutes = lectureReplacement.FromHour.Minutes.ToString().Length == 1 ? "0" + lectureReplacement.FromHour.Minutes.ToString() : lectureReplacement.FromHour.Minutes.ToString();
+                    string date = lectureReplacement.Date.Year.ToString() + month + day;
+                    string time = hours + minutes;
+                    if (LectureReplacementExists(lectureReplacement.DocId,lectureReplacement.CourseName,date, time))
                     {
                         return Conflict();
                     }
@@ -104,17 +112,19 @@ namespace FastFly.BeckEnd.Controllers
             return Ok(lecturesReplacement);
         }
 
-        // DELETE: api/LectureReplacements/5
+        // DELETE: api/LectureReplacements/5/CourseName/DateAsString/TimeAsString
         [ResponseType(typeof(LectureReplacement))]
-        public IHttpActionResult DeleteLectureReplacement(string id)
+        public IHttpActionResult DeleteLectureReplacement(int docId, string courseName, string date, string fromHour)
         {
-            LectureReplacement lectureReplacement = db.LectureReplacements.Find(id);
-            if (lectureReplacement == null)
+            DateTime lectureDate = Utilities.stringToDateTime(date);
+            TimeSpan lectureTime = Utilities.stringToTimeSpan(fromHour);
+            List<LectureReplacement> lectureReplacement = db.LectureReplacements.Where(e => e.DocId == docId && e.CourseName.Equals(courseName) && (e.Date.Year == lectureDate.Year && e.Date.Month == lectureDate.Month && e.Date.Day == lectureDate.Day) && e.FromHour == lectureTime).ToList();
+            if (lectureReplacement.Count != 1 || lectureReplacement == null)
             {
                 return NotFound();
             }
 
-            db.LectureReplacements.Remove(lectureReplacement);
+            db.LectureReplacements.Remove(lectureReplacement[0]);
             db.SaveChanges();
 
             return Ok(lectureReplacement);
@@ -129,9 +139,11 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool LectureReplacementExists(string id)
+        private bool LectureReplacementExists(int docId, string courseName, string date, string fromHour)
         {
-            return db.LectureReplacements.Count(e => e.CourseName == id) > 0;
+            DateTime lectureDate = Utilities.stringToDateTime(date);
+            TimeSpan lectureTime = Utilities.stringToTimeSpan(fromHour);
+            return db.LectureReplacements.Count(e => e.DocId == docId && e.CourseName.Equals(courseName) && (e.Date.Year == lectureDate.Year && e.Date.Month == lectureDate.Month && e.Date.Day == lectureDate.Day) && e.FromHour == lectureTime) > 0;
         }
     }
 }

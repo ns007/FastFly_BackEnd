@@ -35,16 +35,16 @@ namespace FastFly.BeckEnd.Controllers
             return Ok(otherOxpense);
         }
 
-        // PUT: api/OtherOxpenses/5
+        // PUT: api/OtherOxpenses/5/expenseEssence
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutOtherOxpense(int id, OtherOxpense otherOxpense)
+        public IHttpActionResult PutOtherOxpense(int id, string expenseEssence, OtherOxpense otherOxpense)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != otherOxpense.DocId)
+            if (id != otherOxpense.DocId || !expenseEssence.Equals(otherOxpense.ExpenseEssence))
             {
                 return BadRequest();
             }

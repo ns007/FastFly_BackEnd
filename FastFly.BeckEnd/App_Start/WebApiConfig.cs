@@ -36,6 +36,14 @@ namespace FastFly.BeckEnd
                 routeTemplate: "api/{controller}/{id}/{password}",
                 defaults: new { id = RouteParameter.Optional,password = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "LectureReplacmentApi",
+                routeTemplate: "api/{controller}/{docId}/{courseName}/{date}/{fromHour}",
+                defaults: new { docId = RouteParameter.Optional, CourseName = RouteParameter.Optional,
+                                Date = RouteParameter.Optional, FromHour = RouteParameter.Optional
+                              }
+            );
         }
     }
 }
