@@ -37,14 +37,17 @@ namespace FastFly.BeckEnd.Controllers
 
         // PUT: api/AccommodationAbroads/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAccommodationAbroad(int id, AccommodationAbroad accommodationAbroad)
+        public IHttpActionResult PutAccommodationAbroad(int docId, string fromDate, string toDate, AccommodationAbroad accommodationAbroad)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != accommodationAbroad.DocId)
+            DateTime AccommodationAbroadFromDate = Utilities.stringToDateTime(fromDate);
+            DateTime AccommodationAbroadToDate = Utilities.stringToDateTime(toDate);
+            if (docId != accommodationAbroad.DocId || (AccommodationAbroadFromDate.Year != accommodationAbroad.FromDate.Year || AccommodationAbroadFromDate.Month != accommodationAbroad.FromDate.Month || AccommodationAbroadFromDate.Day != accommodationAbroad.FromDate.Day) ||
+                (AccommodationAbroadToDate.Year != accommodationAbroad.ToDate.Year || AccommodationAbroadToDate.Month != accommodationAbroad.ToDate.Month || AccommodationAbroadToDate.Day != accommodationAbroad.ToDate.Day)
+                )
             {
                 return BadRequest();
             }
@@ -57,7 +60,7 @@ namespace FastFly.BeckEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccommodationAbroadExists(id))
+                if (!AccommodationAbroadExists(docId, fromDate, toDate))
                 {
                     return NotFound();
                 }
@@ -89,7 +92,13 @@ namespace FastFly.BeckEnd.Controllers
                 }
                 catch (DbUpdateException)
                 {
-                    if (AccommodationAbroadExists(accommodationAbroad.DocId))
+                    string fromMonth = accommodationAbroad.FromDate.Month.ToString().Length == 1 ? "0" + accommodationAbroad.FromDate.Month.ToString() : accommodationAbroad.FromDate.Month.ToString();
+                    string fromDay = accommodationAbroad.FromDate.Day.ToString().Length == 1 ? "0" + accommodationAbroad.FromDate.Day.ToString() : accommodationAbroad.FromDate.Day.ToString();
+                    string fromDate = accommodationAbroad.FromDate.Year.ToString() + fromMonth + fromDay;
+                    string toMonth = accommodationAbroad.ToDate.Month.ToString().Length == 1 ? "0" + accommodationAbroad.ToDate.Month.ToString() : accommodationAbroad.ToDate.Month.ToString();
+                    string toDay = accommodationAbroad.ToDate.Day.ToString().Length == 1 ? "0" + accommodationAbroad.ToDate.Day.ToString() : accommodationAbroad.ToDate.Day.ToString();
+                    string toDate = accommodationAbroad.FromDate.Year.ToString() + toMonth + toDay;
+                    if (AccommodationAbroadExists(accommodationAbroad.DocId,fromDate,toDate))
                     {
                         return Conflict();
                     }
@@ -104,15 +113,17 @@ namespace FastFly.BeckEnd.Controllers
 
         // DELETE: api/AccommodationAbroads/5
         [ResponseType(typeof(AccommodationAbroad))]
-        public IHttpActionResult DeleteAccommodationAbroad(int id)
+        public IHttpActionResult DeleteAccommodationAbroad(int docId,string fromDate, string toDate)
         {
-            AccommodationAbroad accommodationAbroad = db.AccommodationAbroads.Find(id);
-            if (accommodationAbroad == null)
+            DateTime AccommodationAbroadFromDate = Utilities.stringToDateTime(fromDate);
+            DateTime AccommodationAbroadToDate = Utilities.stringToDateTime(toDate);
+            List<AccommodationAbroad> accommodationAbroad = db.AccommodationAbroads.Where(e => e.DocId == docId && (e.FromDate.Year == AccommodationAbroadFromDate.Year && e.FromDate.Month == AccommodationAbroadFromDate.Month && e.FromDate.Day == AccommodationAbroadFromDate.Day) && (e.ToDate.Year == AccommodationAbroadToDate.Year && e.ToDate.Month == AccommodationAbroadToDate.Month && e.ToDate.Day == AccommodationAbroadToDate.Day)).ToList();
+            if (accommodationAbroad.Count != 1 || accommodationAbroad == null)
             {
                 return NotFound();
             }
 
-            db.AccommodationAbroads.Remove(accommodationAbroad);
+            db.AccommodationAbroads.Remove(accommodationAbroad[0]);
             db.SaveChanges();
 
             return Ok(accommodationAbroad);
@@ -127,9 +138,13 @@ namespace FastFly.BeckEnd.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AccommodationAbroadExists(int id)
+        private bool AccommodationAbroadExists(int docId,string fromDate,string toDate)
         {
-            return db.AccommodationAbroads.Count(e => e.DocId == id) > 0;
+            DateTime AccommodationAbroadFromDate = Utilities.stringToDateTime(fromDate);
+            DateTime AccommodationAbroadToDate = Utilities.stringToDateTime(toDate);
+            return db.AccommodationAbroads.Count(e => e.DocId == docId && (AccommodationAbroadFromDate.Year == e.FromDate.Year && AccommodationAbroadFromDate.Month == e.FromDate.Month && AccommodationAbroadFromDate.Day == e.FromDate.Day) 
+                                                && (AccommodationAbroadToDate.Year == e.FromDate.Year && AccommodationAbroadToDate.Month == e.FromDate.Month && AccommodationAbroadToDate.Day == e.FromDate.Day)
+            ) > 0;
         }
     }
 }

@@ -44,6 +44,17 @@ namespace FastFly.BeckEnd
                                 Date = RouteParameter.Optional, FromHour = RouteParameter.Optional
                               }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "AccommodationAbroadsApi",
+                routeTemplate: "api/{controller}/{docId}/{fromDate}/{toDate}",
+                defaults: new
+                {
+                    docId = RouteParameter.Optional,
+                    fromDate = RouteParameter.Optional,
+                    toDate = RouteParameter.Optional
+                }
+            );
         }
     }
 }
