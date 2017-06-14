@@ -122,7 +122,8 @@ namespace FastFly.BeckEnd.Controllers
             {
                 return NotFound();
             }
-            user.UserEnable = true;
+            db.Entry(user).State = EntityState.Modified;
+            user.UserEnable = false;
             db.SaveChanges();
 
             return Ok(user);

@@ -66,6 +66,7 @@
           <Property Name="Date4" Type="datetime" />
           <Property Name="Sign5" Type="nvarchar" MaxLength="50" />
           <Property Name="Date5" Type="datetime" />
+          <Property Name="DocStatus" Type="int" />
         </EntityType>
         <EntityType Name="CarRents">
           <Key>
@@ -626,6 +627,7 @@
           <Property Name="Sign5" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Date5" Type="DateTime" Nullable="true" Precision="3" />
           <NavigationProperty Name="User" Relationship="FastFlyModel.UserApplyDocument" FromRole="ApplyDocument" ToRole="User" />
+          <Property Name="DocStatus" Type="Int32" />
         </EntityType>
         <Association Name="UserApplyDocument">
           <End Type="FastFlyModel.User" Role="User" Multiplicity="1" />
@@ -832,7 +834,8 @@
     <EntitySetMapping Name="ApplyDocuments">
       <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.ApplyDocument)">
         <MappingFragment StoreEntitySet="ApplyDocuments">
-          <ScalarProperty Name="DocId" ColumnName="DocId" />
+          <ScalarProperty Name="DocStatus" ColumnName="DocStatus" />
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ColleagueType" ColumnName="ColleagueType" />
           <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />

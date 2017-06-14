@@ -52,6 +52,7 @@ namespace FastFly.BeckEnd
         public Nullable<System.DateTime> Date4 { get; set; }
         public string Sign5 { get; set; }
         public Nullable<System.DateTime> Date5 { get; set; }
+        public Nullable<int> DocStatus { get; set; }
     
         public virtual User User { get; set; }
     }

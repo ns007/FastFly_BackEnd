@@ -61,6 +61,7 @@
     <Property Name="Date4" Type="datetime" />
     <Property Name="Sign5" Type="nvarchar" MaxLength="50" />
     <Property Name="Date5" Type="datetime" />
+    <Property Name="DocStatus" Type="int" />
   </EntityType>
   <EntityType Name="CarRents">
     <Key>

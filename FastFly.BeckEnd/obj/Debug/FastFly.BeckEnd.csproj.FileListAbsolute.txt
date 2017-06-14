@@ -384,4 +384,3 @@ C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\Microsoft.Owin
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\bin\System.Web.Http.Owin.xml
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.dll
 C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.pdb
-C:\Users\netanel\Source\Repos\FastFly_BackEnd\FastFly.BeckEnd\obj\Debug\FastFly.BeckEnd.csprojResolveAssemblyReference.cache

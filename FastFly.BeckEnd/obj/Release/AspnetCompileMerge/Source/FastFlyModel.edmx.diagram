@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ae06e4c1b8c4f8997b788e477999ed9" Name="Diagram1" DisplayType="true" >
+        <EntityTypeShape EntityType="FastFlyModel.User" Width="2" PointX="4" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FastFlyModel.Department" Width="2" PointX="7.625" PointY="0.5" />
+        <AssociationConnector Association="FastFlyModel.DepartmentUser" />
+        <EntityTypeShape EntityType="FastFlyModel.Faculty" Width="2" PointX="0.5" PointY="0.5" />
+        <AssociationConnector Association="FastFlyModel.FacultyUser" />
+        <EntityTypeShape EntityType="FastFlyModel.ApplicationRole" Width="2" PointX="0.5" PointY="2.5" />
+        <AssociationConnector Association="FastFlyModel.ApplicationRoleUser" />
+        <EntityTypeShape EntityType="FastFlyModel.CarRent" Width="1.875" PointX="0.5" PointY="7" />
+        <EntityTypeShape EntityType="FastFlyModel.Country" Width="1.875" PointX="7" PointY="2.875" />
+        <EntityTypeShape EntityType="FastFlyModel.TestReplacement" Width="2" PointX="0.5" PointY="4.75" />
+        <EntityTypeShape EntityType="FastFlyModel.StayExpense" Width="1.5" PointX="6.125" PointY="7" />
+        <EntityTypeShape EntityType="FastFlyModel.ReckoningDocument" Width="2.375" PointX="2.875" PointY="5.625" />
+        <EntityTypeShape EntityType="FastFlyModel.OtherOxpense" Width="2" PointX="8.25" PointY="7" />
+        <EntityTypeShape EntityType="FastFlyModel.LectureReplacement" Width="2" PointX="6.375" PointY="10.25" />
+        <EntityTypeShape EntityType="FastFlyModel.Flight" Width="2.375" PointX="9.75" PointY="2.875" />
+        <AssociationConnector Association="FastFlyModel.CountryFlight" />
+        <EntityTypeShape EntityType="FastFlyModel.AccommodationAbroad" Width="2.25" PointX="10" PointY="0.5" />
+        <EntityTypeShape EntityType="FastFlyModel.ApplyDocument" Width="2.5" PointX="2.125" PointY="10.25" />
+        <AssociationConnector Association="FastFlyModel.UserApplyDocument" />
+        <EntityTypeShape EntityType="FastFlyModel.DestinationPeriods" Width="2" PointX="10.625" PointY="7" />
+        <AssociationConnector Association="FastFlyModel.CountryDestinationPeriods" />
+        <AssociationConnector Association="FastFlyModel.UserReckoningDocument" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

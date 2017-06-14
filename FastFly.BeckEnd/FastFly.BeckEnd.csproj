@@ -282,6 +282,7 @@
       <DependentUpon>FastFlyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="enums\ApplicationRoles.cs" />
+    <Compile Include="enums\DocStatus.cs" />
     <Compile Include="Faculty.cs">
       <DependentUpon>FastFlyModel.tt</DependentUpon>
     </Compile>
