@@ -95,7 +95,7 @@ namespace FastFly.BeckEnd.Controllers
             {
                 db.SaveChanges();
                 //if headofdepartemt sign the document and approve the trip send mail to all signers.
-                if(applyDocument.DepartmentHeadSign != null)
+                if(applyDocument.DepartmentHeadSign != null) //need to add check if no one of the signer has any data so its first time)
                 {
                     var ApproveUsers = db.Users.Where(b => b.ApplicationRoleId == (int)ApplicationRoles.Signer);
                     List<string> approveUsers = new List<string>();

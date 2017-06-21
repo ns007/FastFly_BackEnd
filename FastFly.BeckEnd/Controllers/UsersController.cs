@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Web.Http.Description;
 using System.Data.Entity.Infrastructure;
+using FastFly.BeckEnd.enums;
 
 namespace FastFly.BeckEnd.Controllers
 {
@@ -28,6 +29,16 @@ namespace FastFly.BeckEnd.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(string id)
         {
+            if (id.Equals("signers"))
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                List<User> signers =  GetSignersUsers();
+                if (signers == null || signers.Count == 0)
+                {
+                    return NotFound();
+                }
+                return Ok(signers);
+            }
             User user = db.Users.Find(id);
             if (user == null)
             {
@@ -35,6 +46,19 @@ namespace FastFly.BeckEnd.Controllers
             }
 
             return Ok(user);
+        }
+
+        // GET: api/Users/signers
+        [ResponseType(typeof(User))]
+        public List<User> GetSignersUsers()
+        {
+            List<User> signerUsers = db.Users.Where(u => u.ApplicationRoleId == (int)ApplicationRoles.Signer).ToList();
+            if (signerUsers == null || signerUsers.Count == 0)
+            {
+                return null;
+            }
+
+            return signerUsers;
         }
 
         public IHttpActionResult Get(string id, string Password)

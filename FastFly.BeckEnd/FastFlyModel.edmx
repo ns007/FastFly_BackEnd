@@ -56,17 +56,22 @@
           <Property Name="DepartmentHeadSignDate" Type="datetime" />
           <Property Name="WastedYear" Type="nvarchar" MaxLength="5" />
           <Property Name="WastedAmount" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Sign1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign1" Type="bit" />
           <Property Name="Date1" Type="datetime" />
-          <Property Name="Sign2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign2" Type="bit" />
           <Property Name="Date2" Type="datetime" />
-          <Property Name="Sign3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign3" Type="bit" />
           <Property Name="Date3" Type="datetime" />
-          <Property Name="Sign4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign4" Type="bit" />
           <Property Name="Date4" Type="datetime" />
-          <Property Name="Sign5" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sign5" Type="bit" />
           <Property Name="Date5" Type="datetime" />
           <Property Name="DocStatus" Type="int" />
+          <Property Name="Reason1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Reason2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Reason3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Reason4" Type="nvarchar" MaxLength="250" />
+          <Property Name="Reason5" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="CarRents">
           <Key>
@@ -616,18 +621,23 @@
           <Property Name="DepartmentHeadSignDate" Type="DateTime" Nullable="true" Precision="3" />
           <Property Name="WastedYear" Type="String" Nullable="true" MaxLength="5" Unicode="true" FixedLength="false" />
           <Property Name="WastedAmount" Type="Decimal" Nullable="true" Precision="18" Scale="0" />
-          <Property Name="Sign1" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sign1" Type="Boolean" Nullable="true" />
           <Property Name="Date1" Type="DateTime" Nullable="true" Precision="3" />
-          <Property Name="Sign2" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sign2" Type="Boolean" Nullable="true" />
           <Property Name="Date2" Type="DateTime" Nullable="true" Precision="3" />
-          <Property Name="Sign3" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sign3" Type="Boolean" Nullable="true" />
           <Property Name="Date3" Type="DateTime" Nullable="true" Precision="3" />
-          <Property Name="Sign4" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sign4" Type="Boolean" Nullable="true" />
           <Property Name="Date4" Type="DateTime" Nullable="true" Precision="3" />
-          <Property Name="Sign5" Type="String" Nullable="true" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Sign5" Type="Boolean" Nullable="true" />
           <Property Name="Date5" Type="DateTime" Nullable="true" Precision="3" />
           <NavigationProperty Name="User" Relationship="FastFlyModel.UserApplyDocument" FromRole="ApplyDocument" ToRole="User" />
           <Property Name="DocStatus" Type="Int32" />
+          <Property Name="Reason1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Reason2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Reason3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Reason4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Reason5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="UserApplyDocument">
           <End Type="FastFlyModel.User" Role="User" Multiplicity="1" />
@@ -834,7 +844,12 @@
     <EntitySetMapping Name="ApplyDocuments">
       <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.ApplyDocument)">
         <MappingFragment StoreEntitySet="ApplyDocuments">
-          <ScalarProperty Name="DocStatus" ColumnName="DocStatus" />
+          <ScalarProperty Name="Reason5" ColumnName="Reason5" />
+                <ScalarProperty Name="Reason4" ColumnName="Reason4" />
+                <ScalarProperty Name="Reason3" ColumnName="Reason3" />
+                <ScalarProperty Name="Reason2" ColumnName="Reason2" />
+                <ScalarProperty Name="Reason1" ColumnName="Reason1" />
+                <ScalarProperty Name="DocStatus" ColumnName="DocStatus" />
                 <ScalarProperty Name="DocId" ColumnName="DocId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ColleagueType" ColumnName="ColleagueType" />

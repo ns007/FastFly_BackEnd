@@ -42,17 +42,22 @@ namespace FastFly.BeckEnd
         public Nullable<System.DateTime> DepartmentHeadSignDate { get; set; }
         public string WastedYear { get; set; }
         public Nullable<decimal> WastedAmount { get; set; }
-        public string Sign1 { get; set; }
+        public Nullable<bool> Sign1 { get; set; }
         public Nullable<System.DateTime> Date1 { get; set; }
-        public string Sign2 { get; set; }
+        public Nullable<bool> Sign2 { get; set; }
         public Nullable<System.DateTime> Date2 { get; set; }
-        public string Sign3 { get; set; }
+        public Nullable<bool> Sign3 { get; set; }
         public Nullable<System.DateTime> Date3 { get; set; }
-        public string Sign4 { get; set; }
+        public Nullable<bool> Sign4 { get; set; }
         public Nullable<System.DateTime> Date4 { get; set; }
-        public string Sign5 { get; set; }
+        public Nullable<bool> Sign5 { get; set; }
         public Nullable<System.DateTime> Date5 { get; set; }
         public Nullable<int> DocStatus { get; set; }
+        public string Reason1 { get; set; }
+        public string Reason2 { get; set; }
+        public string Reason3 { get; set; }
+        public string Reason4 { get; set; }
+        public string Reason5 { get; set; }
     
         public virtual User User { get; set; }
     }

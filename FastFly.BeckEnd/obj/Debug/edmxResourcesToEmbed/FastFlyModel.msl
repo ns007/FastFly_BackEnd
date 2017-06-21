@@ -148,6 +148,11 @@
     <EntitySetMapping Name="ApplyDocuments">
       <EntityTypeMapping TypeName="IsTypeOf(FastFlyModel.ApplyDocument)">
         <MappingFragment StoreEntitySet="ApplyDocuments">
+          <ScalarProperty Name="Reason5" ColumnName="Reason5" />
+          <ScalarProperty Name="Reason4" ColumnName="Reason4" />
+          <ScalarProperty Name="Reason3" ColumnName="Reason3" />
+          <ScalarProperty Name="Reason2" ColumnName="Reason2" />
+          <ScalarProperty Name="Reason1" ColumnName="Reason1" />
           <ScalarProperty Name="DocStatus" ColumnName="DocStatus" />
           <ScalarProperty Name="DocId" ColumnName="DocId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
