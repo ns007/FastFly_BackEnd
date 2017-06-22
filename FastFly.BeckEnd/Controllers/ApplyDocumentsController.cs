@@ -95,7 +95,7 @@ namespace FastFly.BeckEnd.Controllers
             {
                 db.SaveChanges();
                 //if headofdepartemt sign the document and approve the trip send mail to all signers.
-                if(applyDocument.DepartmentHeadSign != null) //need to add check if no one of the signer has any data so its first time)
+                if(applyDocument.DepartmentHeadSign != null && !SomeSignerSign(applyDocument)) //need to add check if no one of the signer has any data so its first time)
                 {
                     var ApproveUsers = db.Users.Where(b => b.ApplicationRoleId == (int)ApplicationRoles.Signer);
                     List<string> approveUsers = new List<string>();
@@ -103,8 +103,7 @@ namespace FastFly.BeckEnd.Controllers
                     {
                         approveUsers.Add(user.EmailAddress);
                     }
-                    //ApproveUsers.ToArray<string>();
-                    SendMail(approveUsers);
+                    SendMail(approveUsers,Utilities.signersMail);
                 }
 
             }
@@ -121,6 +120,16 @@ namespace FastFly.BeckEnd.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        private bool SomeSignerSign(ApplyDocument applyDocument)
+        {
+            if(applyDocument.Sign1 == null && applyDocument.Sign2 == null && applyDocument.Sign3 == null 
+                && applyDocument.Sign4 == null && applyDocument.Sign5 == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         // POST: api/ApplyDocuments
@@ -180,20 +189,20 @@ namespace FastFly.BeckEnd.Controllers
                     .Where(b => b.Id == applyDocument.UserId)
                     .FirstOrDefault();
             var headOfDepUser = db.Users
-                    .Where(b => b.Role == "HeadOfDepartment" && b.DepartmentId == applyUser.DepartmentId)
+                    .Where(b => b.ApplicationRoleId == (int)ApplicationRoles.HeadOfDepartment && b.DepartmentId == applyUser.DepartmentId)
                     .FirstOrDefault();
             if (headOfDepUser != null)
             {
                 List<string> emailAddress = new List<string>();
                 emailAddress.Add(headOfDepUser.EmailAddress);
-                bool messageSucced = SendMail(emailAddress);
+                bool messageSucced = SendMail(emailAddress,Utilities.HeadOfDepartmentMail);
                 return;
             }
             else
                 return;
         }
 
-        private bool SendMail(List<string> emailAddresses)
+        private bool SendMail(List<string> emailAddresses,string BodyMessage)
         {
             try
             {
@@ -205,8 +214,8 @@ namespace FastFly.BeckEnd.Controllers
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("shenkarfastfly@gmail.com","Shenkar - FastFly");
                     mail.To.Add(emailAddress);
-                    mail.Subject = "Test Mail";
-                    mail.Body = "This is for testing sending mail for head of department";
+                    mail.Subject = "Shenkar - FastFly";
+                    mail.Body = BodyMessage;
 
                     SmtpServer.Port = 587;
                     SmtpServer.Credentials = new System.Net.NetworkCredential("shenkarfastfly", "fastfly123");

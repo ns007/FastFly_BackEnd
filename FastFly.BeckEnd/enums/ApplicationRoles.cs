@@ -10,6 +10,7 @@ namespace FastFly.BeckEnd.enums
         Administrator = 1,
         Lecturer,
         BookKeeper,
-        Signer
+        Signer,
+        HeadOfDepartment
     }
 }

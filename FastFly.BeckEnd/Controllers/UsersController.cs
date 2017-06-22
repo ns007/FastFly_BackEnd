@@ -52,13 +52,28 @@ namespace FastFly.BeckEnd.Controllers
         [ResponseType(typeof(User))]
         public List<User> GetSignersUsers()
         {
-            List<User> signerUsers = db.Users.Where(u => u.ApplicationRoleId == (int)ApplicationRoles.Signer).ToList();
+            List<User> signerUsers = db.Users.Where(u => u.ApplicationRoleId == (int)ApplicationRoles.Signer && u.UserEnable == true).ToList();
             if (signerUsers == null || signerUsers.Count == 0)
             {
                 return null;
             }
 
             return signerUsers;
+        }
+
+        [Route("api/Users/HeadOfDep/{id}")]
+        [ResponseType(typeof(ApplyDocument))]
+        public IHttpActionResult GetHeadOfDep(string id)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            User applyUser = db.Users.Where(u => u.Id.Equals(id)).FirstOrDefault();
+            User HeadOfDepUser = db.Users.Where(b => b.ApplicationRoleId == (int)ApplicationRoles.HeadOfDepartment && b.DepartmentId == applyUser.DepartmentId).FirstOrDefault();
+            if(HeadOfDepUser != null)
+            {
+                return Ok(HeadOfDepUser);
+            }
+            else
+                return NotFound();
         }
 
         public IHttpActionResult Get(string id, string Password)
@@ -115,7 +130,7 @@ namespace FastFly.BeckEnd.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            //user.Password = EncrpytPassword(user.Password);
             db.Users.Add(user);
 
             try
@@ -135,6 +150,13 @@ namespace FastFly.BeckEnd.Controllers
             }
 
             return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        }
+
+        private string EncrpytPassword(string password)
+        {
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            return System.Text.Encoding.ASCII.GetString(data);
         }
 
         // DELETE: api/Users/5

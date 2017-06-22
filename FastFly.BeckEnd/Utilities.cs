@@ -7,6 +7,11 @@ namespace FastFly.BeckEnd
 {
     public class Utilities
     {
+        public static string HeadOfDepartmentMail = @"ממתין עבורך טופס בקשה ליציאה לכנס מאחד מן המרצים במחלקה שלך,
+אנא כנס למערכת FastFly על מנת לצפות בנתונים";
+
+        public static string signersMail = @"ממתין עבורך טופס בקשה ליציאה לכנס מאחד מן המרצים בשנקר,
+אנא כנס למערכת FastFly על מנת לצפות בנתונים";
         public static DateTime stringToDateTime(string date)
         {
             DateTime tempDateTime = new DateTime(Convert.ToInt32(date.Substring(0, 4)), Convert.ToInt32(date.Substring(4, 2)), Convert.ToInt32(date.Substring(6, 2)));
