@@ -90,6 +90,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ApplicationInsights.config">
       <publishTime>03/05/2017 19:45:08</publishTime>
     </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>06/22/2017 09:58:30</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>06/22/2017 09:58:30</publishTime>
+    </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
@@ -97,7 +103,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
     <File Include="bin/FastFly.BeckEnd.dll">
-      <publishTime>06/14/2017 08:24:26</publishTime>
+      <publishTime>06/22/2017 09:54:44</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/09/2016 21:37:14</publishTime>
@@ -424,7 +430,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2017 19:48:11</publishTime>
     </File>
     <File Include="FastFlyModel.edmx.diagram">
-      <publishTime>03/12/2017 20:50:06</publishTime>
+      <publishTime>06/22/2017 08:01:49</publishTime>
     </File>
     <File Include="FastFlyModel.edmx.sql">
       <publishTime>04/30/2017 20:11:18</publishTime>
@@ -449,6 +455,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="packages.config">
       <publishTime>03/23/2017 10:29:03</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>06/22/2017 09:58:22</publishTime>
     </File>
     <File Include="ReckoningDocument.cs">
       <publishTime>04/30/2017 19:48:21</publishTime>
@@ -532,7 +541,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/05/2017 19:39:43</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/14/2017 08:39:43</publishTime>
+      <publishTime>06/22/2017 09:55:38</publishTime>
     </File>
   </ItemGroup>
 </Project>

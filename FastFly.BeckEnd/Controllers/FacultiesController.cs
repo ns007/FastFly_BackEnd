@@ -19,6 +19,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/Faculties
         public IQueryable<Faculty> GetFaculties()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.Faculties;
         }
 

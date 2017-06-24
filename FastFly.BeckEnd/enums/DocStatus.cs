@@ -7,7 +7,7 @@ namespace FastFly.BeckEnd.enums
 {
     public enum DocStatus
     {
-        Open,
-        Close
+        Close,
+        Open
     }
 }

@@ -19,6 +19,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/Departments
         public IQueryable<Department> GetDepartments()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.Departments;
         }
 

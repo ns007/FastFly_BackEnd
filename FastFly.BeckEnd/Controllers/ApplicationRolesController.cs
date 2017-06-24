@@ -19,6 +19,7 @@ namespace FastFly.BeckEnd.Controllers
         // GET: api/ApplicationRoles
         public IQueryable<ApplicationRole> GetApplicationRoles()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.ApplicationRoles;
         }
 

@@ -49,6 +49,7 @@ namespace FastFly.BeckEnd.Controllers
         }
 
         // GET: api/Users/signers
+        [Route("api/Users/getsignusers")]
         [ResponseType(typeof(User))]
         public List<User> GetSignersUsers()
         {
