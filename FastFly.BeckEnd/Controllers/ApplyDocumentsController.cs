@@ -70,6 +70,26 @@ namespace FastFly.BeckEnd.Controllers
                 return NotFound();
         }
 
+        [Route("api/ApplyDocuments/docs/{id}/{status}")]
+        [ResponseType(typeof(ApplyDocument))]
+        public IHttpActionResult GetOpenApplyDocument(string id,string status)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            List<ApplyDocument> openDocuments = new List<ApplyDocument>();
+            if (status.Equals("close"))
+            {
+                openDocuments = db.ApplyDocuments.Where(db => db.DocStatus == (int)DocStatus.Close && db.UserId.Equals(id)).ToList();
+            }
+            if (status.Equals("open"))
+            {
+                openDocuments = db.ApplyDocuments.Where(db => db.DocStatus == (int)DocStatus.Open && db.UserId.Equals(id)).ToList();
+            }
+            if (openDocuments.Count > 0)
+                return Ok(openDocuments);
+            else
+                return NotFound();
+        }
+
         // GET: api/ApplyDocuments/5/userid
         [ResponseType(typeof(ApplyDocument))]
         public IHttpActionResult Get(int docId,string userId)
